@@ -834,7 +834,7 @@ app.factory('detailFlight', function ($http, $location) {
             if (col == undefined) return;
             if (col.editable.length && enable == 'on') {
                 var $sp = $('#editModal').scope();
-                $sp.commentdata = row["EventComment"].trim().slice(0);
+                $sp.commentdata = row["EventTweet"] ? row["EventTweet"].trim().slice(0) : row["EventComment"].trim().slice(0);
                 $('#editcomment').parent().removeClass("has-error");
                 $sp.editmodel_msg = '';
                 $sp.cdupdate = -1;
