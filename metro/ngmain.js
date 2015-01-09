@@ -524,12 +524,12 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
 
     $scope.modifyData = function (bforce) {
         //var strxml = '/ETMclient.jsp?gzFile=' + param.gzFile;
-        var strxml = 'metro/' + param.gzFile;
+        var strxml = '/metro/xml/' + param.gzFile;
         var dt = new Date();
 
         if(errcnt > ($scope.tableProp.settings.refreshinterval*3)) {
-                $scope.alerts[0] = {type: 'danger', msg: "Error in updating data, page will refresh automatically after few iteration!", show: true};
-                if(errcnt > ($scope.tableProp.settings.refreshinterval*5))  window.location.reload();
+			$scope.alerts[0] = {type: 'danger', msg: "Error in updating data, page will refresh automatically after few iteration!", show: true};
+			if(errcnt > ($scope.tableProp.settings.refreshinterval*5))  window.location.reload();
         }
         else if(errcnt == 0) { $scope.alerts[0].show = false; }
 
@@ -539,10 +539,10 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
         	if (strcnt != -1 && !$scope.refreshLoop($scope)) {
 			//log('call again ' + (dt.getTime() - calldt.getTime())/1000);
 			//calldt = new Date();
-            		$timeout(function () {
-                	  $scope.modifyData();
-            		  }, 1000);
-            		return null;
+				$timeout(function () {
+				  $scope.modifyData();
+				  }, 1000);
+				return null;
         	}
 	}
 

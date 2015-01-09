@@ -85,50 +85,49 @@ function getTerminals(ar_trm){
 	return str;
 }
 
-var file_arr = [['LHR_1_D_L','lhrt1dl.xml'],
-		['LHR_1_D_U','lhrt1dz.xml'],
-		['LHR_1_A_L','lhrt1al.xml'],
-		['LHR_1_A_U','lhrt1az.xml'],
+var file_arr = [['LHR_1_D_L','lhrt1dl.xml.gz'],
+		['LHR_1_D_U','lhrt1dz.xml.gz'],
+		['LHR_1_A_L','lhrt1al.xml.gz'],
+		['LHR_1_A_U','lhrt1az.xml.gz'],
 		
-		['LHR_3_D_L','lhrt3dl.xml'],
-                ['LHR_3_D_U','lhrt3dz.xml'],
-                ['LHR_3_A_L','lhrt3al.xml'],
-                ['LHR_3_A_U','lhrt3az.xml'],
+		['LHR_3_D_L','lhrt3dl.xml.gz'],
+                ['LHR_3_D_U','lhrt3dz.xml.gz'],
+                ['LHR_3_A_L','lhrt3al.xml.gz'],
+                ['LHR_3_A_U','lhrt3az.xml.gz'],
                 
-		['LHR_5_D_L','lhrt5dl.xml'],
-                ['LHR_5_D_U','lhrt5dz.xml'],
-                ['LHR_5_A_L','lhrt5al.xml'],
-                ['LHR_5_A_U','lhrt5az.xml'],
+		['LHR_5_D_L','lhrt5dl.xml.gz'],
+                ['LHR_5_D_U','lhrt5dz.xml.gz'],
+                ['LHR_5_A_L','lhrt5al.xml.gz'],
+                ['LHR_5_A_U','lhrt5az.xml.gz'],
 
-                ['LGW_N_D_L','lgwtndl.xml'],
-                ['LGW_N_D_U','lgwtndz.xml'],
-                ['LGW_N_A_L','lgwtnal.xml'],
-                ['LGW_N_A_U','lgwtnaz.xml'],
+                ['LGW_N_D_L','lgwtndl.xml.gz'],
+                ['LGW_N_D_U','lgwtndz.xml.gz'],
+                ['LGW_N_A_L','lgwtnal.xml.gz'],
+                ['LGW_N_A_U','lgwtnaz.xml.gz'],
 
-                ['LCY__D_L','lcytdl.xml'],
-                ['LCY__D_U','lcytdz.xml'],
-                ['LCY__A_L','lcytal.xml'],
-                ['LCY__A_U','lcytaz.xml'],
+                ['LCY__D_L','lcytdl.xml.gz'],
+                ['LCY__D_U','lcytdz.xml.gz'],
+                ['LCY__A_L','lcytal.xml.gz'],
+                ['LCY__A_U','lcytaz.xml.gz'],
 
-                ['JFK_7_D_L','jfkt7dl.xml'],
-                ['JFK_7_D_U','jfkt7dz.xml'],
-                ['JFK_7_A_L','jfkt7al.xml'],
-                ['JFK_7_A_U','jfkt7az.xml'],
+                ['JFK_7_D_L','jfkt7dl.xml.gz'],
+                ['JFK_7_D_U','jfkt7dz.xml.gz'],
+                ['JFK_7_A_L','jfkt7al.xml.gz'],
+                ['JFK_7_A_U','jfkt7az.xml.gz'],
 
 		];
 
 //onclick="' + openlink('https://etmplus-uat.baplc.com/ETMclient.html?gzFile=lhrt5dz.xml.gz') + ';">\
 function openlink(btnset){
 
-        var pushurl = 'ngETMclient.html?gzFile=xml/';
+        var pushurl = 'ngETMclient.html?gzFile=';
 
 	for(var cnt = 0; file_arr.length > cnt; cnt++) {
 		if(file_arr[cnt][0] ==  btnset.code + '_' + (btnset.trm.length ? btnset.trm[0] : '') + '_' + btnset.flight + '_' + btnset.time.substring(0,1)) {
 			pushurl += file_arr[cnt][1];
 
 			if (btnset.dmod == 'TRM' && btnset.code == 'LHR') {
-				//pushurl = pushurl.substring(0, pushurl.indexOf('.xml.gz')) + '_a'  + '.xml.gz&MOD=TRM';	
-				pushurl = pushurl.substring(0, pushurl.indexOf('.xml')) + '_a'  + '.xml&MOD=TRM';	
+				pushurl = pushurl.substring(0, pushurl.indexOf('.xml.gz')) + '_a'  + '.xml.gz&MOD=TRM';	
 			}
 
 			break;
