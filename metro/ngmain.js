@@ -4,7 +4,7 @@ var smalldev = false;
 var dep_coldis = ["ETM_CarrierCode", "FlightNumber", "OperationalSuffix", "ETM_ArrivalAirportCode", "AbbreviatedAircraftRegistration", "AircraftTypeCode",
     "DepartureAircraftStand", "ScheduledDepartureDateTime", "TargetStartupApprovalDateTime", "ETM_CancelledStatus",
     "EstimatedDepartureDateTime", "ETM_EstimatedDepartureDateTimeContext", "ETM_DepartureDelayMinutes", "SlotDateTime", "SlotTimeContext",
-    "TargetTakeoffDateTime", "TakeoffDateTime", "EventTweet"
+    "TargetTakeoffDateTime", "TakeoffDateTime", "EventComment"
 ];
 
 var arv_coldis = ["ETM_CarrierCode", "FlightNumber", "OperationalSuffix", "ETM_DepartureAirportCode", "AbbreviatedAircraftRegistration", "AircraftTypeCode",
@@ -165,7 +165,7 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
 	var nupdate = 0;
         var $sp = $('#editModal').scope();
 
-        if(!comment.length || (comment == row["EventTweet"].trim())) {
+        if(!comment.length || (comment == row["EventComment"].trim())) {
             $('#editcomment').parent().addClass("has-error"); 
             $sp.editmodel_msg = 'Please update the comment.'; 
             $('#editcomment').keydown(function() {$(this).parent().removeClass("has-error"); $sp.editmodel_msg = '';});
@@ -175,7 +175,7 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
         $sp.editmodel_msg = '';
 
 	if (row["EstimatedDepartureDateTime"] != etd){ nupdate |= 1;}
-	if (row["EventTweet"] != comment){ nupdate |= 2;}
+	if (row["EventComment"] != comment){ nupdate |= 2;}
         if ($('#select_code').val() && $('#select_delay').val()) { 
             var cdupt = $sp.cdupdate;
             var dc = $('#select_code option[value=' + $("#select_code").val() + ']').text();
@@ -246,7 +246,7 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
 					 $scope.tableProp.local["#text"] +'</Locale>';
 
 		if((nupdate & 1) == 1) { updatexml += '<EstimatedDepartureDateTime>' + getTDate(etd) + '</EstimatedDepartureDateTime>'; }
-		if((nupdate & 2) == 2) { updatexml += '<EventTweet>' + comment + '</EventTweet>'; }
+		if((nupdate & 2) == 2) { updatexml += '<EventComment>' + comment + '</EventComment>'; }
 		if((nupdate & 4) == 4) {
                     var delayxml = '';
                     $.each(delaycode, function (n, v){
@@ -834,7 +834,7 @@ app.factory('detailFlight', function ($http, $location) {
             if (col == undefined) return;
             if (col.editable.length && enable == 'on') {
                 var $sp = $('#editModal').scope();
-                $sp.commentdata = row["EventTweet"].trim().slice(0);
+                $sp.commentdata = row["EventComment"].trim().slice(0);
                 $('#editcomment').parent().removeClass("has-error");
                 $sp.editmodel_msg = '';
                 $sp.cdupdate = -1;

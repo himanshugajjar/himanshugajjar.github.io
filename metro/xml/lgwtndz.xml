@@ -1,0 +1,142 @@
+<?xml-stylesheet type="text/xsl" href="etm.xsl"?>
+<PageDisplayFormat>
+  <MessageHeader>
+    <MessageCreationDateTime>2014-10-31T20:36:53</MessageCreationDateTime>
+    <Locale TimeType="UTC" Variance="0"  >LGW</Locale>
+    <PageColourDefinition>
+      <Colour Name="black" R="0" G="0" B="0" />
+      <Colour Name="blue" R="117" G="186" B="255" />
+      <Colour Name="cyan" R="224" G="255" B="255" />
+      <Colour Name="darkgrey" R="30" G="30" B="30" />
+      <Colour Name="medgrey" R="212" G="212" B="212" />
+      <Colour Name="lightgrey" R="237" G="237" B="237" />
+      <Colour Name="grey" R="128" G="128" B="128" />
+      <Colour Name="green" R="0" G="255" B="0" />
+      <Colour Name="default" R="0" G="255" B="0" />
+      <Colour Name="magenta" R="255" G="0" B="255" />
+      <Colour Name="orange" R="255" G="250" B="240" />
+      <Colour Name="pink" R="255" G="240" B="245" />
+      <Colour Name="red" R="255" G="0" B="0" />
+      <Colour Name="white" R="255" G="255" B="255" />
+      <Colour Name="yellow" R="255" G="255" B="0" />
+      <Colour Name="amber" R="255" G="255" B="0" />
+    </PageColourDefinition>
+    <PageFontSize>15</PageFontSize>
+    <FitToPage>false</FitToPage>
+    <AlarmTrigger>3840</AlarmTrigger>
+    <RefreshInterval>5</RefreshInterval>
+  </MessageHeader>
+  <TitleBlock Background="lightgrey" >
+    <Row>
+      <RowData Colour="black" Name="Header1">LGW Terminal N - Departures ZuluTime                   </RowData>
+      <RowData Colour="black" Name="Header2">              Chk      Book   Pax 2  Pax -PaxBags- -CrwBags-         Chk                                 Flt  Cab</RowData>
+    </Row>
+    <Row>
+      <RowData Colour="black" Name="Header4">                                                      Dis  Coach DCS In       Load   Check   2   Clr    2  Clr    2         In                                  Crew Crew Crew</RowData>
+    </Row>
+    <Row>
+      <RowData Colour="black" Name="ETM_CarrierCode"></RowData>
+      <RowData Colour="black" Name="FlightNumber">Flt No</RowData>
+      <RowData Colour="black" Name="OperationalSuffix"></RowData>
+      <RowData Colour="black" Name="ETM_ArrivalAirportCode">  Dest</RowData>
+      <RowData Colour="black" Name="ScheduledDepartureDateTime">    STD</RowData>
+      <RowData Colour="black" Name="QueryEstimatedDepartureDateTime"></RowData>
+      <RowData Colour="black" Name="EstimatedDepartureDateTime">  ETD</RowData>
+      <RowData Colour="black" Name="ETM_DepartureDelayedPriorDay"></RowData>
+      <RowData Colour="black" Name="DepartureLinkFlightNumber">  lFlt</RowData>
+      <RowData Colour="black" Name="DepartureLinkFlightEstimatedArrivalDateTime"> lETA</RowData>
+      <RowData Colour="black" Name="DepartureLinkFlightArrivalDateTimeContext"></RowData>
+      <RowData Colour="black" Name="ETM_CancelledStatus"> Cx</RowData>
+      <RowData Colour="black" Name="SlotDateTime"> Slot</RowData>
+      <RowData Colour="black" Name="SlotTimeContext"> </RowData>
+      <RowData Colour="black" Name="ETM_EstimatedDepartureDateTimeContext">Dp</RowData>
+      <RowData Colour="black" Name="TakeoffDateTime"> TKO</RowData>
+      <RowData Colour="black" Name="ETM_DepartureDelayMinutes"> Dlay</RowData>
+      <RowData Colour="black" Name="FICODisruptionFlag"> </RowData>
+      <RowData Colour="black" Name="DepartureAircraftStand">Stnd</RowData>
+      <RowData Colour="black" Name="ETM_DeparturePassengerCoachingStatus"> Px</RowData>
+      <RowData Colour="black" Name="DCS_EstimatedDepartureDateTime">  ETD</RowData>
+      <RowData Colour="black" Name="ConcourseCheckInCloseDateTime"> Clse</RowData>
+      <RowData Colour="black" Name="ConcourseCheckInZone"> Z</RowData>
+      <RowData Colour="black" Name="PassengersBookedDirect"> Dir</RowData>
+      <RowData Colour="black" Name="PassengersBookedTransfer"> Xfr</RowData>
+      <RowData Colour="black" Name="ETM_PassengersNotCheckedDirect"> Dir</RowData>
+      <RowData Colour="black" Name="ETM_PassengersNotCheckedTransfer"> Xfr</RowData>
+      <RowData Colour="black" Name="PassengersNotBoarded"> Brd</RowData>
+      <RowData Colour="black" Name="ETM_BagsClearToLoad"> Load</RowData>
+      <RowData Colour="black" Name="ETM_BagsStillToLoad"> Load</RowData>
+      <RowData Colour="black" Name="ETM_BagsClearToLoadCrew"> Load</RowData>
+      <RowData Colour="black" Name="ETM_BagsStillToLoadCrew"> Load</RowData>
+      <RowData Colour="black" Name="AbbreviatedAircraftRegistration"> Reg</RowData>
+      <RowData Colour="black" Name="AircraftTypeCode"> Typ</RowData>
+      <RowData Colour="black" Name="ConcourseCheckInOpenDateTime"> Open</RowData>
+      <RowData Colour="black" Name="DepartureGateStatus"> DGS</RowData>
+      <RowData Colour="black" Name="EventComment"> Comment</RowData>
+      <RowData Colour="black" Name="FlightCrewExpiryDateTime">                    Exp</RowData>
+      <RowData Colour="black" Name="CabinCrewExpiryDateTime">  Exp</RowData>
+      <RowData Colour="black" Name="CrewDepartureCoachingStatus">  Cch</RowData>
+      <RowData Colour="black" Name="DeparturePassengerGate"> P Gt</RowData>
+      <RowData Colour="black" Name="DCS_Gate"> D Gt</RowData>
+      <RowData Colour="black" Name="DepartureAirportGate"> Ap Gt</RowData>
+    </Row>
+  </TitleBlock>
+  <ClientTitleBlock Background="lightgrey" >
+    <Row>
+      <RowData Colour="black" Justify="left" Name="ETM_CarrierCode"></RowData>
+      <RowData Colour="black" Justify="right" Name="FlightNumber">Flt No</RowData>
+      <RowData Colour="black" Justify="left" Name="OperationalSuffix"></RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_ArrivalAirportCode">Dest</RowData>
+      <RowData Colour="black" Justify="left" Name="ScheduledDepartureDateTime">STD</RowData>
+      <RowData Colour="black" Justify="right" Name="QueryEstimatedDepartureDateTime"></RowData>
+      <RowData Colour="black" Justify="left" Name="EstimatedDepartureDateTime">ETD</RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_DepartureDelayedPriorDay"></RowData>
+      <RowData Colour="black" Justify="right" Name="DepartureLinkFlightNumber">lFlt</RowData>
+      <RowData Colour="black" Justify="left" Name="Pad1"></RowData>
+      <RowData Colour="black" Justify="left" Name="StandardWorkingtimeFlag">W</RowData>
+      <RowData Colour="black" Justify="left" Name="DepartureLinkFlightEstimatedArrivalDateTime">lETA</RowData>
+      <RowData Colour="black" Justify="right" Name="DepartureLinkFlightArrivalDateTimeContext"></RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_CancelledStatus">Cx</RowData>
+      <RowData Colour="black" Justify="left" Name="SlotDateTime">Slot</RowData>
+      <RowData Colour="black" Justify="left" Name="SlotTimeContext"></RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_EstimatedDepartureDateTimeContext">Dp</RowData>
+      <RowData Colour="black" Justify="left" Name="TakeoffDateTime">TKO</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_DepartureDelayMinutes">Dlay</RowData>
+      <RowData Colour="black" Justify="left" Name="FICODisruptionFlag"></RowData>
+      <RowData Colour="black" Justify="left" Name="DepartureAircraftStand">Stnd</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_DeparturePassengerCoachingStatus">Coach&lt;br /&gt;Px</RowData>
+      <RowData Colour="black" Justify="left" Name="Pad2"></RowData>
+      <RowData Colour="black" Justify="left" Name="DCS_EstimatedDepartureDateTime">DCS&lt;br /&gt;ETD</RowData>
+      <RowData Colour="black" Justify="left" Name="Pad3"></RowData>
+      <RowData Colour="black" Justify="left" Name="ConcourseCheckInCloseDateTime">Chk&lt;br /&gt;In&lt;br /&gt;Clse</RowData>
+      <RowData Colour="black" Justify="right" Name="ConcourseCheckInZone">Z</RowData>
+      <RowData Colour="black" Justify="right" Name="PassengersBookedDirect">Book&lt;br /&gt;Load&lt;br /&gt;Dir</RowData>
+      <RowData Colour="black" Justify="right" Name="PassengersBookedTransfer">Book&lt;br /&gt;Load&lt;br /&gt;Xfr</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_PassengersNotCheckedDirect">Pax&lt;br /&gt;2Check&lt;br /&gt;Dir</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_PassengersNotCheckedTransfer">Pax&lt;br /&gt;2Check&lt;br /&gt;Xfr</RowData>
+      <RowData Colour="black" Justify="right" Name="PassengersNotBoarded">Pax&lt;br /&gt;2&lt;br /&gt;Brd</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_BagsClearToLoad">PaxBag&lt;br /&gt;Clear2&lt;br /&gt;Load</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_BagsStillToLoad">PaxBag&lt;br /&gt;Still2&lt;br /&gt;Load</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_BagsClearToLoadCrew">CrewBag&lt;br /&gt;Clear2&lt;br /&gt;Load</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_BagsStillToLoadCrew">CrewBag&lt;br /&gt;Still2&lt;br /&gt;Load</RowData>
+      <RowData Colour="black" Justify="right" Name="AbbreviatedAircraftRegistration">Reg</RowData>
+      <RowData Colour="black" Justify="right" Name="AircraftTypeCode">Typ</RowData>
+      <RowData Colour="black" Justify="right" Name="ConcourseCheckInOpenDateTime">Check&lt;br /&gt;In&lt;br /&gt;Open</RowData>
+      <RowData Colour="black" Justify="right" Name="DepartureGateStatus">DGS</RowData>
+      <RowData Colour="black" Justify="left" Name="Pad4"></RowData>
+      <RowData Colour="black" Justify="left" Name="EventTweet">Comment</RowData>
+      <RowData Colour="black" Justify="right" Name="FlightCrewExpiryDateTime">Flight&lt;br /&gt;Crew&lt;br /&gt;Exp</RowData>
+      <RowData Colour="black" Justify="right" Name="CabinCrewExpiryDateTime">Cabin&lt;br /&gt;Crew&lt;br /&gt;Exp</RowData>
+      <RowData Colour="black" Justify="right" Name="DeparturePassengerGate">P Gt</RowData>
+      <RowData Colour="black" Justify="right" Name="DCS_Gate">D Gt</RowData>
+      <RowData Colour="black" Justify="right" Name="DepartureAirportGate">Ap Gt</RowData>
+      <RowData Colour="black" Justify="right" Name="TotalFuelToBeOnboard">Fuel&lt;br /&gt;Onbrd&lt;br /&gt;Order</RowData>
+      <RowData Colour="black" Justify="right" Name="FuelCompanyDesignator">F</RowData>
+      <RowData Colour="black" Justify="right" Name="FuelOrderRevision">R</RowData>
+      <RowData Colour="black" Justify="right" Name="FuelMessageStatus">S</RowData>
+    </Row>
+  </ClientTitleBlock>
+  <DataBlock Background="black" AltBackground="darkgrey">
+  </DataBlock>
+  <FooterBlock Background="white">
+  </FooterBlock>
+</PageDisplayFormat>

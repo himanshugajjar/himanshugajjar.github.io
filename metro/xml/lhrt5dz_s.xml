@@ -1,0 +1,962 @@
+<?xml-stylesheet type="text/xsl" href="etm.xsl"?>
+<PageDisplayFormat>
+  <MessageHeader>
+    <MessageCreationDateTime>2014-10-31T20:36:49</MessageCreationDateTime>
+    <Locale TimeType="UTC" Variance="0"  >LHR</Locale>
+    <PageColourDefinition>
+      <Colour Name="black" R="0" G="0" B="0" />
+      <Colour Name="blue" R="117" G="186" B="255" />
+      <Colour Name="cyan" R="224" G="255" B="255" />
+      <Colour Name="darkgrey" R="30" G="30" B="30" />
+      <Colour Name="medgrey" R="212" G="212" B="212" />
+      <Colour Name="lightgrey" R="237" G="237" B="237" />
+      <Colour Name="grey" R="128" G="128" B="128" />
+      <Colour Name="green" R="0" G="255" B="0" />
+      <Colour Name="default" R="0" G="255" B="0" />
+      <Colour Name="magenta" R="255" G="0" B="255" />
+      <Colour Name="orange" R="255" G="250" B="240" />
+      <Colour Name="pink" R="255" G="240" B="245" />
+      <Colour Name="red" R="255" G="0" B="0" />
+      <Colour Name="white" R="255" G="255" B="255" />
+      <Colour Name="yellow" R="255" G="255" B="0" />
+      <Colour Name="amber" R="255" G="255" B="0" />
+    </PageColourDefinition>
+    <PageFontSize>15</PageFontSize>
+    <FitToPage>false</FitToPage>
+    <AlarmTrigger>3840</AlarmTrigger>
+    <RefreshInterval>5</RefreshInterval>
+  </MessageHeader>
+  <TitleBlock Background="lightgrey" >
+    <Row>
+      <RowData Colour="black" Name="Header1">LHR Terminal 5 - S/H Departures ZuluTime               </RowData>
+      <RowData Colour="black" Name="Header2">              Chk      Book   Pax 2  Pax -PaxBags- -CrwBags-         Chk                                 Flt  Cab</RowData>
+    </Row>
+    <Row>
+      <RowData Colour="black" Name="Header4">                                                      Dis  Coach DCS In       Load   Check   2   Clr    2  Clr    2         In                                  Crew Crew Crew</RowData>
+    </Row>
+    <Row>
+      <RowData Colour="black" Name="ETM_CarrierCode"></RowData>
+      <RowData Colour="black" Name="FlightNumber">Flt No</RowData>
+      <RowData Colour="black" Name="OperationalSuffix"></RowData>
+      <RowData Colour="black" Name="ETM_ArrivalAirportCode">  Dest</RowData>
+      <RowData Colour="black" Name="ScheduledDepartureDateTime">    STD</RowData>
+      <RowData Colour="black" Name="QueryEstimatedDepartureDateTime"></RowData>
+      <RowData Colour="black" Name="EstimatedDepartureDateTime">  ETD</RowData>
+      <RowData Colour="black" Name="ETM_DepartureDelayedPriorDay"></RowData>
+      <RowData Colour="black" Name="DepartureLinkFlightNumber">  lFlt</RowData>
+      <RowData Colour="black" Name="DepartureLinkFlightEstimatedArrivalDateTime"> lETA</RowData>
+      <RowData Colour="black" Name="DepartureLinkFlightArrivalDateTimeContext"></RowData>
+      <RowData Colour="black" Name="ETM_CancelledStatus"> Cx</RowData>
+      <RowData Colour="black" Name="SlotDateTime"> Slot</RowData>
+      <RowData Colour="black" Name="SlotTimeContext"> </RowData>
+      <RowData Colour="black" Name="ETM_EstimatedDepartureDateTimeContext">Dp</RowData>
+      <RowData Colour="black" Name="TakeoffDateTime"> TKO</RowData>
+      <RowData Colour="black" Name="ETM_DepartureDelayMinutes"> Dlay</RowData>
+      <RowData Colour="black" Name="FICODisruptionFlag"> </RowData>
+      <RowData Colour="black" Name="DepartureAircraftStand">Stnd</RowData>
+      <RowData Colour="black" Name="ETM_DeparturePassengerCoachingStatus"> Px</RowData>
+      <RowData Colour="black" Name="DCS_EstimatedDepartureDateTime">  ETD</RowData>
+      <RowData Colour="black" Name="ConcourseCheckInCloseDateTime"> Clse</RowData>
+      <RowData Colour="black" Name="ConcourseCheckInZone"> Z</RowData>
+      <RowData Colour="black" Name="PassengersBookedDirect"> Dir</RowData>
+      <RowData Colour="black" Name="PassengersBookedTransfer"> Xfr</RowData>
+      <RowData Colour="black" Name="ETM_PassengersNotCheckedDirect"> Dir</RowData>
+      <RowData Colour="black" Name="ETM_PassengersNotCheckedTransfer"> Xfr</RowData>
+      <RowData Colour="black" Name="PassengersNotBoarded"> Brd</RowData>
+      <RowData Colour="black" Name="ETM_BagsClearToLoad"> Load</RowData>
+      <RowData Colour="black" Name="ETM_BagsStillToLoad"> Load</RowData>
+      <RowData Colour="black" Name="ETM_BagsClearToLoadCrew"> Load</RowData>
+      <RowData Colour="black" Name="ETM_BagsStillToLoadCrew"> Load</RowData>
+      <RowData Colour="black" Name="AbbreviatedAircraftRegistration"> Reg</RowData>
+      <RowData Colour="black" Name="AircraftTypeCode"> Typ</RowData>
+      <RowData Colour="black" Name="ConcourseCheckInOpenDateTime"> Open</RowData>
+      <RowData Colour="black" Name="DepartureGateStatus"> DGS</RowData>
+      <RowData Colour="black" Name="EventComment"> Comment</RowData>
+      <RowData Colour="black" Name="FlightCrewExpiryDateTime">                    Exp</RowData>
+      <RowData Colour="black" Name="CabinCrewExpiryDateTime">  Exp</RowData>
+      <RowData Colour="black" Name="CrewDepartureCoachingStatus">  Cch</RowData>
+      <RowData Colour="black" Name="DeparturePassengerGate"> P Gt</RowData>
+      <RowData Colour="black" Name="DCS_Gate"> D Gt</RowData>
+      <RowData Colour="black" Name="DepartureAirportGate"> Ap Gt</RowData>
+    </Row>
+  </TitleBlock>
+  <ClientTitleBlock Background="lightgrey" >
+    <Row>
+      <RowData Colour="black" Justify="left" Name="ETM_CarrierCode"></RowData>
+      <RowData Colour="black" Justify="right" Name="FlightNumber">Flt&lt;br /&gt;No</RowData>
+      <RowData Colour="black" Justify="left" Name="OperationalSuffix"></RowData>
+      <RowData Colour="black" Justify="right" Name="DepartureLinkFlightNumber">lFlt</RowData>
+      <RowData Colour="black" Justify="left" Name="DepartureLinkFlightEstimatedArrivalDateTime">lETA</RowData>
+      <RowData Colour="black" Justify="right" Name="DepartureLinkFlightArrivalDateTimeContext"></RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_ArrivalAirportCode">Dest</RowData>
+      <RowData Colour="black" Justify="right" Name="AbbreviatedAircraftRegistration">Reg</RowData>
+      <RowData Colour="black" Justify="right" Name="AircraftTypeCode">Typ</RowData>
+      <RowData Colour="black" Justify="left" Name="DepartureAircraftStand">Stnd</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_DeparturePassengerCoachingStatus">Ch&lt;br /&gt;Px</RowData>
+      <RowData Colour="black" Justify="left" Name="ConcourseCheckInCloseDateTime">Chk&lt;br /&gt;In&lt;br /&gt;Clse</RowData>
+      <RowData Colour="black" Justify="left" Name="StandardWorkingtimeFlag">W</RowData>
+      <RowData Colour="black" Justify="left" Name="ScheduledDepartureDateTime">STD</RowData>
+      <RowData Colour="black" Justify="left" Name="DCS_EstimatedDepartureDateTime">DCS&lt;br /&gt;ETD</RowData>
+      <RowData Colour="black" Justify="right" Name="QueryEstimatedDepartureDateTime"></RowData>
+      <RowData Colour="black" Justify="left" Name="AirTrafficDepartureDateTime">EOBT</RowData>
+      <RowData Colour="black" Justify="left" Name="EstimatedDepartureDateTime">ETD&lt;br /&gt;TOBT</RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_DepartureDelayedPriorDay"></RowData>
+      <RowData Colour="black" Justify="left" Name="TargetStartupApprovalDateTime">TSAT</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_CancelledStatus">Cx</RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_EstimatedDepartureDateTimeContext">Dp</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_DepartureDelayMinutes">Dlay</RowData>
+      <RowData Colour="black" Justify="left" Name="FICODisruptionFlag"></RowData>
+      <RowData Colour="black" Justify="left" Name="SlotDateTime">Slot</RowData>
+      <RowData Colour="black" Justify="left" Name="SlotTimeContext"></RowData>
+      <RowData Colour="black" Justify="left" Name="TargetTakeoffDateTime">TTOT</RowData>
+      <RowData Colour="black" Justify="left" Name="TakeoffDateTime">TKO</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_SpecialNeedBooked">PRM&lt;br /&gt;Bkd</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_SpecialNeedChecked">PRM&lt;br /&gt;Chk</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_WheelchairBooked">Wch&lt;br /&gt;Typ&lt;br /&gt;Bkd</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_WheelchairChecked">Wch&lt;br /&gt;Typ&lt;br /&gt;Chk</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_SpecialAsstBooked">Spcl&lt;br /&gt;Asst&lt;br /&gt;Bkd</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_SpecialAsstChecked">Spcl&lt;br /&gt;Asst&lt;br /&gt;Chk</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_UnescortedMinors_Concat">UMS&lt;br /&gt;Bkd/Chk</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_Booked_Concat">Book&lt;br /&gt;Load&lt;br /&gt;Dir/Xfr</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_Checked_Concat">Pax&lt;br /&gt;2Check&lt;br /&gt;Dir/Xfr</RowData>
+      <RowData Colour="black" Justify="right" Name="PassengersNotBoarded">Pax&lt;br /&gt;2&lt;br /&gt;Brd</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_PaxBag_Concat">PaxBag&lt;br /&gt;2Load&lt;br /&gt;Clr/Stl</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_CrewBag_Concat">CrwBag&lt;br /&gt;2Load&lt;br /&gt;Clr/Stl</RowData>
+      <RowData Colour="black" Justify="right" Name="DepartureGateStatus">DGS</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_StaffTravelBooked_Concat">Staff&lt;br /&gt;Bkd&lt;br /&gt;Frm/Sub</RowData>
+      <RowData Colour="black" Justify="left" Name="EventTweet">Comment</RowData>
+      <RowData Colour="black" Justify="right" Name="FlightCrewExpiryDateTime">Flight&lt;br /&gt;Crew&lt;br /&gt;Exp</RowData>
+      <RowData Colour="black" Justify="right" Name="CabinCrewExpiryDateTime">Cabin&lt;br /&gt;Crew&lt;br /&gt;Exp</RowData>
+      <RowData Colour="black" Justify="right" Name="DeparturePassengerGate">P Gt</RowData>
+      <RowData Colour="black" Justify="right" Name="DCS_Gate">D Gt</RowData>
+      <RowData Colour="black" Justify="right" Name="DepartureAirportGate">Ap Gt</RowData>
+      <RowData Colour="black" Justify="right" Name="TotalFuelToBeOnboard">Fuel&lt;br /&gt;Onbrd&lt;br /&gt;Order</RowData>
+      <RowData Colour="black" Justify="right" Name="FuelCompanyDesignator">F</RowData>
+      <RowData Colour="black" Justify="right" Name="FuelOrderRevision">R</RowData>
+      <RowData Colour="black" Justify="right" Name="FuelMessageStatus">S</RowData>
+    </Row>
+  </ClientTitleBlock>
+  <DataBlock Background="black" AltBackground="darkgrey">
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>376 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>TLS</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 376</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber"> 941</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1644</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">TLS     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UOH</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 319</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">539 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1857</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">1940</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">1940</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">1940</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">1940</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">    </RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="amber" Name="SlotDateTime">2000</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2000</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">1959</RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">  35/76</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">       </RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">    </RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   97/1</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> K</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">0/3    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate"> B39</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard"> 10000</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>946 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>DUS</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 946</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber"> 827</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1902</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">DUS     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UPE</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 319</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">523 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1855</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">1940</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">1940</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">1940</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">1940</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">    </RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="amber" Name="SlotDateTime">2000</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">1959</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">2000</RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">  47/27</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">   -2/2</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">    </RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   43/0</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> K</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">1/3    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate"> A23</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  5100</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>444 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>AMS</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 444</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber">1447</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1845</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">AMS     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UUG</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 320</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">505 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1855</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">1940</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">1940</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">1937</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">1940</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">  -3</RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="amber" Name="SlotDateTime">2000</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">1957</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">1956</RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">  96/22</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">   -1/1</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">    </RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   44/0</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> K</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">0/1    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate"> A05</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  4800</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>1318</FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>ABZ</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber">1318</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber"> 819</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1914</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">ABZ     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UUZ</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 320</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">511 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1917</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2000</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">2045</RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2035</RowData>
+      <RowData Colour="red" Name="EstimatedDepartureDateTime">2045</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2045</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">  </RowData>
+      <RowData Colour="red" Name="ETM_DepartureDelayMinutes">  45</RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="default" Name="SlotDateTime">2055</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2103</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">  80/28</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">   -1/0</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded"> 107</RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   61/3</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> N</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">0/2    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate">    </RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  5700</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>1376</FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>MAN</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber">1376</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber">1313</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1902</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">MAN     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UXE</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 321</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">502 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1917</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2000</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2000</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">1956</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2000</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">  -4</RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="default" Name="SlotDateTime">2020</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2018</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">2010</RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">1/1    </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat"> 36/130</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">    0/4</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">    </RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat"> 143/10</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> K</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">2/4    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate">    </RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  5000</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>352 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>NCE</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 352</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber"> 967</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1952</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">NCE     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UPG</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 319</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">512 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1931</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2015</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2015</RowData>
+      <RowData Colour="amber" Name="EstimatedDepartureDateTime">2040</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2032</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">  </RowData>
+      <RowData Colour="amber" Name="ETM_DepartureDelayMinutes">  25</RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="amber" Name="SlotDateTime">2052</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2052</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">  88/19</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">    2/0</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">    </RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   70/1</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> K</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">0/3    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate"> A12</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard"> 11000</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">B</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>958 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>MUC</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 958</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber"> 735</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1945</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">MUC     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UPC</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 319</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">521 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1931</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2015</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2015</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">2026</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2025</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">  11</RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="default" Name="SlotDateTime">2035</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2042</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">   84/9</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">       </RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">    </RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   53/0</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> K</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">0/1    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate">    </RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  8000</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>786 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>ARN</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 786</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber"> 911</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1933</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">ARN     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UOE</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 319</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">513 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1931</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2015</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2015</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">2015</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2015</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">    </RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="amber" Name="SlotDateTime">2035</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2031</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">2030</RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="red" Name="ETM_Booked_Concat"> 103/24</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">    2/0</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">    </RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   80/0</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> K</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">       </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate"> A13</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  7800</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>1338</FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>NCL</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber">1338</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber"> 441</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1950</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">NCL     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UPJ</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 319</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">509 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1941</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2025</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2035</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">2035</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2035</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">  </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">  10</RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="default" Name="SlotDateTime">2055</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2054</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">  42/56</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">   -3/3</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">   1</RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   66/8</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> C</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">1/4    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate">  A9</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  5000</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>1494</FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>GLA</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber">1494</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber">1419</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1938</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">GLA     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UYN</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 320</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">503 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">1941</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2025</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2025</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">2029</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2025</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">   4</RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="default" Name="SlotDateTime">2045</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2048</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">1R/2S      </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">1R/2S      </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">  79/54</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">   -4/3</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">    </RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   76/1</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> K</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">2/5    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate"> A03</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  8700</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>824 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>DUB</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 824</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber">1459</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1951</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">DUB     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UYX</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 320</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">507 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">2011</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2055</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2055</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">2055</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2055</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">  </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">    </RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="amber" Name="SlotDateTime">2115</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2112</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">1D         </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">1D         </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat">  47/20</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">    4/2</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded">   6</RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   32/1</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> B</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">       </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate">    </RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  4600</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 2</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">P</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>1464</FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>EDI</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber">1464</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber"> 461</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">1928</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">EDI     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> ZHB</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 767</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">508 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">2016</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2100</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2100</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">2100</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2100</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">  </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">    </RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="default" Name="SlotDateTime">2120</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2122</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">1S         </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">1S         </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat"> 153/45</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">    0/4</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded"> 191</RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   65/2</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> B</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">0/4    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate"> A08</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  9100</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">B</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>1478</FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>GLA</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber">1478</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightNumber">1495</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightEstimatedArrivalDateTime">2013</RowData>
+      <RowData Colour="default" Name="DepartureLinkFlightArrivalDateTimeContext">Y</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">GLA     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UXF</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 321</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">501 </RowData>
+      <RowData Colour="default" Name="ETM_DeparturePassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ConcourseCheckInCloseDateTime">2016</RowData>
+      <RowData Colour="default" Name="StandardWorkingtimeFlag">  </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2100</RowData>
+      <RowData Colour="default" Name="DCS_EstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="QueryEstimatedDepartureDateTime"> </RowData>
+      <RowData Colour="default" Name="AirTrafficDepartureDateTime">2100</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">2100</RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayedPriorDay"> </RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2100</RowData>
+      <RowData Colour="default" Name="ETM_CancelledStatus">  </RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">  </RowData>
+      <RowData Colour="default" Name="ETM_DepartureDelayMinutes">    </RowData>
+      <RowData Colour="default" Name="FICODisruptionFlag">  </RowData>
+      <RowData Colour="default" Name="SlotDateTime">2120</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="TargetTakeoffDateTime">2125</RowData>
+      <RowData Colour="default" Name="TakeoffDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairBooked">              </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">              </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstBooked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ETM_Booked_Concat"> 114/33</RowData>
+      <RowData Colour="default" Name="ETM_Checked_Concat">    7/4</RowData>
+      <RowData Colour="default" Name="PassengersNotBoarded"> 136</RowData>
+      <RowData Colour="default" Name="ETM_PaxBag_Concat">   43/0</RowData>
+      <RowData Colour="default" Name="ETM_CrewBag_Concat">       </RowData>
+      <RowData Colour="default" Name="DepartureGateStatus"> N</RowData>
+      <RowData Colour="default" Name="ETM_StaffTravelBooked_Concat">0/5    </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+      <RowData Colour="default" Name="FlightCrewExpiryDateTime">     </RowData>
+      <RowData Colour="red" Name="CabinCrewExpiryDateTime">     </RowData>
+      <RowData Colour="default" Name="DeparturePassengerGate">    </RowData>
+      <RowData Colour="default" Name="DCS_Gate">  A1</RowData>
+      <RowData Colour="default" Name="DepartureAirportGate">     </RowData>
+      <RowData Colour="default" Name="TotalFuelToBeOnboard">  5800</RowData>
+      <RowData Colour="default" Name="FuelCompanyDesignator">L</RowData>
+      <RowData Colour="default" Name="FuelOrderRevision"> 1</RowData>
+      <RowData Colour="default" Name="FuelMessageStatus">F</RowData>
+    </Row>
+  </DataBlock>
+  <FooterBlock Background="white">
+  </FooterBlock>
+</PageDisplayFormat>
