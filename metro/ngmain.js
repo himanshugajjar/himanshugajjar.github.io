@@ -298,7 +298,7 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
             var updateflt = JSON.parse(localStorage.getItem( 'updateflt_' + window.location.pathname));
             if(!updateflt || !updateflt.length)  return;
             var file = '_response.dat.gz';
-            var strxml = '/ETMclient.jsp?gzFile=message_store/';
+            var strxml = '/metro?gzFile=message_store/';
 
             for(i = 0; i < updateflt.length; i++) {
                 if(updateflt[i].userid != $scope.userid || (updateflt[i].date - new Date()) > (1*60*1000)) {
@@ -841,7 +841,7 @@ app.factory('detailFlight', function ($http, $location) {
 
                 if(!$sp.delaycode) {
                     //load delaycode 
-                    $http.get($location.protocol() + '://' + $location.host() + '/delaycodes.json').success(function (datafile) {
+                    $http.get($location.protocol() + '://' + $location.host() + '/metro/delaycodes.json').success(function (datafile) {
                         if(datafile) {
                             datafile.DelayType.unshift({DelayCode :'', DelayCodeDec: ''});
                             $sp.delaycode = datafile.DelayType; 
@@ -853,7 +853,7 @@ app.factory('detailFlight', function ($http, $location) {
                 var sfunc;
                 var val = row["KeyData"].split('|');
                 var file = (val[4] + val[0] + val[1] + val[2]).replace(/ /g, '');
-                var strxml = '/ETMclient.jsp?gzFile=message_store/';
+                var strxml = '/metro?gzFile=message_store/';
 
                 colprefix = '_delaycoded.dat.gz';
                 sfunc = function (datafile) {
@@ -894,7 +894,7 @@ app.factory('detailFlight', function ($http, $location) {
 		var sfunc;
                 var val = row["KeyData"].split('|');
                 var file = (val[4] + val[0] + val[1] + val[2]).replace(/ /g, '');
-                var strxml = '/ETMclient.jsp?gzFile=message_store/';
+                var strxml = '/metro?gzFile=message_store/';
                 var sp = $('#popoverModal').scope();
                 
 		sp.popover = {};
