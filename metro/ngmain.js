@@ -1,15 +1,15 @@
-//globle variables
+//global variables
 var firstLoad = true;
 var smalldev = false;
-var dep_coldis = ["ETM_CarrierCode", "FlightNumber", "OperationalSuffix", "ETM_ArrivalAirportCode", "AbbreviatedAircraftRegistration", "AircraftTypeCode",
+var dep_coldis = ["ETM_CarrierCode", "FlightNumber", "OperationalSuffix", "ETM_ArrivalAirportCode", 
+	"AbbreviatedAircraftRegistration", "AircraftTypeCode",
     "DepartureAircraftStand", "ScheduledDepartureDateTime", "TargetStartupApprovalDateTime", "ETM_CancelledStatus",
-    "EstimatedDepartureDateTime", "ETM_EstimatedDepartureDateTimeContext", "ETM_DepartureDelayMinutes", "SlotDateTime", "SlotTimeContext",
-    "TargetTakeoffDateTime", "TakeoffDateTime", "EventComment"
+    "EstimatedDepartureDateTime", "ETM_EstimatedDepartureDateTimeContext", "ETM_DepartureDelayMinutes", "SlotDateTime", "SlotTimeContext", "TargetTakeoffDateTime", "TakeoffDateTime", "EventComment"
 ];
 
-var arv_coldis = ["ETM_CarrierCode", "FlightNumber", "OperationalSuffix", "ETM_DepartureAirportCode", "AbbreviatedAircraftRegistration", "AircraftTypeCode",
-    "ArrivalAircraftStand", "ScheduledArrivalDateTime", "EstimatedArrivalDateTime", "ETM_EstimatedArrivalDateTimeContext", "ETM_ArrivalDelayMinutes",
-    "Cancelled", "LoadMessageStatus", "ContainerPalletMessageStatus", "ArrivalLinkFlightNumber", "ArrivalLinkFlightEstimatedDepartureDateTime"
+var arv_coldis = ["ETM_CarrierCode", "FlightNumber", "OperationalSuffix", "ETM_DepartureAirportCode",
+	"AbbreviatedAircraftRegistration", "AircraftTypeCode",
+    "ArrivalAircraftStand", "ScheduledArrivalDateTime", "EstimatedArrivalDateTime", "ETM_EstimatedArrivalDateTimeContext", "ETM_ArrivalDelayMinutes", "Cancelled", "LoadMessageStatus", "ContainerPalletMessageStatus", "ArrivalLinkFlightNumber", "ArrivalLinkFlightEstimatedDepartureDateTime"
 ];
 
 var popoverCol = ["FICODisruptionFlag", "ETM_DepartureDelayMinutes", "ETM_ArrivalDelayMinutes", "LoadMessageStatus", "ContainerPalletMessageStatus"];
@@ -587,27 +587,28 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
                     angular.copy($scope.colDef, org_columns);
 		    //set the col position
 		    for(var i = 0, sift = [];  $scope.colPos && i < $scope.colPos.length; i++) {
-			if($scope.colPos[i] != i && sift.indexOf(i) == -1) {
-				sift.push($scope.colPos[i]);
-		        	$scope.colDef.splice($scope.colPos[i], 0,
-		            		$scope.colDef.splice(i, 1)[0]);
-			}
+				if($scope.colPos[i] != i && sift.indexOf(i) == -1) {
+					sift.push($scope.colPos[i]);
+						$scope.colDef.splice($scope.colPos[i], 0,
+								$scope.colDef.splice(i, 1)[0]);
+				}
 		    }
     		    if(!$scope.colPos) {$scope.colPos = []; for(var i = 0; $scope.colDef.length > i; i++) {$scope.colPos[i] = i;}}
 	    	    $rootScope.title = 'ETM+ ' + $scope.tableProp.title.text;
 	    }
 
-            detailFlight.setcolDef($scope.colDef);
+		detailFlight.setcolDef($scope.colDef);
 
-            $scope.datasize = $scope.rowData.length;
-            $scope.loadTime = (new Date().getTime() - dt.getTime()) / 1000;
+		$scope.datasize = $scope.rowData.length;
+		$scope.loadTime = (new Date().getTime() - dt.getTime()) / 1000;
 
-            dt_diff = new Date().getTime();
-            log("Data change " + $scope.loadTime + " sec");
-    	    $("#splash").hide();
-            $('#loader').hide(500);
-            brefreshing = false;
-            $("#tfooter").width($("#probar").width() - 16);
+		dt_diff = new Date().getTime();
+		log("Data change " + $scope.loadTime + " sec");
+		$("#splash").hide();
+		$('#loader').hide(500);
+		brefreshing = false;
+		$("#tfooter").width($("#probar").width() - 16);
+		
 	    if( /Android|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {
                 $("#tfooter").height("150px");
 	    }
@@ -1032,12 +1033,12 @@ app.directive('etmTable', function ($timeout) {
                                 function (i, val) {
                                     $($("#clone_etmTable thead th").get(i))
                                         .css("width", $(val).css("width"))
-					.css("height", $(val).css("height"));
+										.css("height", $(val).css("height"));
                                 });
                         }
-			// check visible cols
-			var cols = scope.colDef.length - newValue;
- 			scope.hasdetail = (cols > 0);
+						// check visible cols
+						var cols = scope.colDef.length - newValue;
+						scope.hasdetail = (cols > 0);
                         //                	console.log(newValue);
                     }
                 },
@@ -1094,17 +1095,17 @@ function createEtmJSON($scope, xml) {
         var celprop;
         var rows = tree.PageDisplayFormat["DataBlock"]["Row"];
         var tbProp = '';
-	var settings = $scope.tableProp.settings;
+		var settings = $scope.tableProp.settings;
 
-	var tlb = tree.PageDisplayFormat["TitleBlock"]["Row"][0]["RowData"][0];
-	if(!tlb) {tlb =  tree.PageDisplayFormat["TitleBlock"]["Row"][0]["RowData"];}
+		var tlb = tree.PageDisplayFormat["TitleBlock"]["Row"][0]["RowData"][0];
+		if(!tlb) {tlb =  tree.PageDisplayFormat["TitleBlock"]["Row"][0]["RowData"];}
 
-	$scope.tableProp.title = JSON.parse('{ "text":"' + tlb["#text"] + '","color":"' + tlb["-Colour"] + '"}');
-	$scope.tableProp.hdrcolor = tree.PageDisplayFormat["TitleBlock"]["-Background"];
-	$scope.tableProp.rowcolor =  tree.PageDisplayFormat["DataBlock"]["-Background"];
-	$scope.tableProp.receivedon =  tree.PageDisplayFormat["MessageHeader"]["MessageCreationDateTime"];
-	$scope.tableProp.local = tree.PageDisplayFormat["MessageHeader"]["Locale"];
-	$scope.tableProp.settings = settings;
+		$scope.tableProp.title = JSON.parse('{ "text":"' + tlb["#text"] + '","color":"' + tlb["-Colour"] + '"}');
+		$scope.tableProp.hdrcolor = tree.PageDisplayFormat["TitleBlock"]["-Background"];
+		$scope.tableProp.rowcolor =  tree.PageDisplayFormat["DataBlock"]["-Background"];
+		$scope.tableProp.receivedon =  tree.PageDisplayFormat["MessageHeader"]["MessageCreationDateTime"];
+		$scope.tableProp.local = tree.PageDisplayFormat["MessageHeader"]["Locale"];
+		$scope.tableProp.settings = settings;
 	
         if (!$scope.colDef.length) {
 
@@ -1137,7 +1138,7 @@ function createEtmJSON($scope, xml) {
         var len = rows.length;
         //len = 1;
         for (var i = 0; len > i; i++) {
-	    var bkeydata = fkeydata.length;
+			var bkeydata = fkeydata.length;
             var cData = [];
             if (i == 0) {
                 coldata = '[';
@@ -1146,7 +1147,7 @@ function createEtmJSON($scope, xml) {
             var key = '';
             $.each((rows[i].KeyData), function (name, value) {
                 key += value + '|';
-		if(!bkeydata) {fkeydata += name + '|';}
+				if(!bkeydata) {fkeydata += name + '|';}
             });
 
             //key = JSON.stringify(rows[i].KeyData);
@@ -1184,12 +1185,12 @@ function createEtmJSON($scope, xml) {
             }
         }
         if(!$scope.rowData.length) {
-	    $scope.rowData = JSON.parse(coldata);
-	    $scope.cellprop = JSON.parse(celprop);
+			$scope.rowData = JSON.parse(coldata);
+			$scope.cellprop = JSON.parse(celprop);
         }
         else {
             diffJSON(JSON.parse(coldata), $scope.rowData, JSON.parse(celprop), $scope.cellprop);
-	}
+		}
         //$scope.cellprop = JSON.parse(celprop);
     } catch (ex) {
         log(ex);
@@ -1198,11 +1199,11 @@ function createEtmJSON($scope, xml) {
 }
 
 function compareRowData(a,b) {
-  if (a.KeyData < b.KeyData)
-     return -1;
-  if (a.KeyData > b.KeyData)
-    return 1;
-  return 0;
+	if (a.KeyData < b.KeyData)
+		return -1;
+	if (a.KeyData > b.KeyData)
+		return 1;
+	return 0;
 }
 
 function dynamicSort(property) {
@@ -1245,7 +1246,7 @@ function diffJSON(newr, oldr, ncell, ocell) {
 		
 		for(i = 0; i < oldr.length; i++) {
 			od = oldr[i];
-                        del = true;
+            del = true;
 			for(j = 0; j < newr.length; j++) {
 				if(od['KeyData'] == newr[j]['KeyData']) {
 					var keydata = newr[j]['KeyData'];
@@ -1272,11 +1273,11 @@ function diffJSON(newr, oldr, ncell, ocell) {
 		var ncnt = ardel.length;
 		for(i = 0; ncnt > 0 && i < oldr.length; i++) {
 			var key = oldr[i]['KeyData'];
-                        if(ardel.lastIndexOf(key) != -1) {
+			if(ardel.lastIndexOf(key) != -1) {
 				delete ocell[key];
 				oldr.splice(i, 1);
 				ncnt--;
-                                log('deleted : ' + key);
+				log('deleted : ' + key);
 			}
 		}
 
