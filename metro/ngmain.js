@@ -49,7 +49,7 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
     $scope.alerts = [{ type: 'danger', msg: '', show: false }];
     $scope.param = $location.search();
     if ($scope.param.gzFile == undefined) {
-        gfile = $location.absUrl().substring($location.absUrl().indexOf("=") + 1, $location.absUrl().indexOf(".gz") + 3);
+        gfile = $location.absUrl().substring($location.absUrl().indexOf("=") + 1, $location.absUrl().indexOf(".xml") + 4);
         $scope.param.gzFile = gfile;
         $scope.param.MOD = $location.absUrl().substring($location.absUrl().indexOf("MOD=") + 4, $location.absUrl().indexOf("MOD") + 7);
     }
@@ -240,10 +240,10 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
 			}
 		});
                 
-                updatexml += '</KeyData>';
-                updatexml += '<Locale TimeType="'+ $scope.tableProp.local["-TimeType"] + 
-                             '" Variance="' + $scope.tableProp.local["-Variance"] + '">' + 
-                             $scope.tableProp.local["#text"] +'</Locale>';
+		updatexml += '</KeyData>';
+		updatexml += '<Locale TimeType="'+ $scope.tableProp.local["-TimeType"] + 
+					 '" Variance="' + $scope.tableProp.local["-Variance"] + '">' + 
+					 $scope.tableProp.local["#text"] +'</Locale>';
 
 		if((nupdate & 1) == 1) { updatexml += '<EstimatedDepartureDateTime>' + getTDate(etd) + '</EstimatedDepartureDateTime>'; }
 		if((nupdate & 2) == 2) { updatexml += '<EventTweet>' + comment + '</EventTweet>'; }
@@ -523,8 +523,8 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
     };
 
     $scope.modifyData = function (bforce) {
-        var strxml = '/ETMclient.jsp?gzFile=' + param.gzFile;
-        //   	strxml = '/metro/' + gzfile;
+        //var strxml = '/ETMclient.jsp?gzFile=' + param.gzFile;
+        var strxml = 'metro/' + param.gzFile;
         var dt = new Date();
 
         if(errcnt > ($scope.tableProp.settings.refreshinterval*3)) {

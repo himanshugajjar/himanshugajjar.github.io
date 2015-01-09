@@ -43,18 +43,17 @@
 			return this;
 		}
 
-
 		function openPanel(elm){
-				if(elm == '#tblsettings') {
-				var side_wd = parseInt($(elm).css("width"));
-						var dlgw = $('#right_content').width() - side_wd;
-				$(elm).css("height", ($(document).height() - $("#navbar").height()) + 'px');
-						//animate right content
-						$("div[id^='dlg_']").css({width: dlgw});
-						$('#right_content').animate({left: side_wd}, 500);
-				$('#clone_thead').animate({left: ($("#clone_thead").offset().left + side_wd) + 'px'}, 500);
-				}
-				$(elm).show('slide',500);
+			if(elm == '#tblsettings') {
+			var side_wd = parseInt($(elm).css("width"));
+					var dlgw = $('#right_content').width() - side_wd;
+			$(elm).css("height", ($(document).height() - $("#navbar").height()) + 'px');
+					//animate right content
+					$("div[id^='dlg_']").css({width: dlgw});
+					$('#right_content').animate({left: side_wd}, 500);
+			$('#clone_thead').animate({left: ($("#clone_thead").offset().left + side_wd) + 'px'}, 500);
+			}
+			$(elm).show('slide',500);
 		}
 
 		function closePanel(elm) {
