@@ -140,7 +140,7 @@ function openlink(btnset){
 /* will required for real work
 function openlink(btnset){
 	
-	var pushurl = 'https://etmplus-uat.baplc.com/metro/etmpushclient.html';
+	var pushurl = 'https://etmplus-uat.baplc.com/metro2/etmpushclient.html';
 	return pushurl + 
 	'?STNTXT=' + btnset.txt + 
 	'&STNCOD=' + btnset.code +

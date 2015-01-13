@@ -106,7 +106,7 @@ app.factory('detailFlight', function ($http, $location) {
 
                 if(!$sp.delaycode) {
                     //load delaycode 
-                    $http.get($location.protocol() + '://' + $location.host() + '/metro/data/delaycodes.json').success(function (datafile) {
+                    $http.get($location.protocol() + '://' + $location.host() + '/metro2/data/delaycodes.json').success(function (datafile) {
                         if(datafile) {
                             datafile.DelayType.unshift({DelayCode :'', DelayCodeDec: ''});
                             $sp.delaycode = datafile.DelayType; 
