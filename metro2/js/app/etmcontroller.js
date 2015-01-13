@@ -485,7 +485,7 @@ app.controller('etmCtrl', function ($scope, $http, $timeout,
 
     $scope.modifyData = function (bforce) {
         //var strxml = '/ETMclient.jsp?gzFile=' + param.gzFile;
-        var strxml = '/metro/xml/' + param.gzFile;
+        var strxml = '/metro/data/' + param.gzFile;
         var dt = new Date();
 
         if(errcnt > ($scope.tableProp.settings.refreshinterval*3)) {

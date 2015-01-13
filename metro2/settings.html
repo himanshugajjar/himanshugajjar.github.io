@@ -251,7 +251,7 @@ $(document).ready(
 	function loadAirports() {   
 	var airportdata = '';
 
-	var xmlDoc = loadXMLDoc("stations.xml");
+	var xmlDoc = loadXMLDoc("data/stations.xml");
 	var station = xmlDoc.getElementsByTagName("Station");
 
 	for(var i = 0; i < station.length; i++){
