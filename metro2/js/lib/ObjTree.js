@@ -134,7 +134,7 @@ XML.ObjTree.prototype.parseElement = function ( elem ) {
         for ( var i=0; i<elem.attributes.length; i++ ) {
             var key = elem.attributes[i].nodeName;
             if ( typeof(key) != "string" ) continue;
-            var val = elem.attributes[i].value;
+            var val = elem.attributes[i].nodeValue;
             if ( ! val ) continue;
             key = this.attr_prefix + key;
             if ( typeof(cnt[key]) == "undefined" ) cnt[key] = 0;
