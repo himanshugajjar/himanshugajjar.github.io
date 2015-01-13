@@ -1,0 +1,96 @@
+<?xml-stylesheet type="text/xsl" href="etm.xsl"?>
+<PageDisplayFormat>
+  <MessageHeader>
+    <MessageCreationDateTime>2014-10-31T20:36:48</MessageCreationDateTime>
+    <Locale TimeType="Local" Variance="0"  >LHR</Locale>
+    <PageColourDefinition>
+      <Colour Name="black" R="0" G="0" B="0" />
+      <Colour Name="blue" R="117" G="186" B="255" />
+      <Colour Name="cyan" R="224" G="255" B="255" />
+      <Colour Name="darkgrey" R="30" G="30" B="30" />
+      <Colour Name="medgrey" R="212" G="212" B="212" />
+      <Colour Name="lightgrey" R="237" G="237" B="237" />
+      <Colour Name="grey" R="128" G="128" B="128" />
+      <Colour Name="green" R="0" G="255" B="0" />
+      <Colour Name="default" R="0" G="255" B="0" />
+      <Colour Name="magenta" R="255" G="0" B="255" />
+      <Colour Name="orange" R="255" G="250" B="240" />
+      <Colour Name="pink" R="255" G="240" B="245" />
+      <Colour Name="red" R="255" G="0" B="0" />
+      <Colour Name="white" R="255" G="255" B="255" />
+      <Colour Name="yellow" R="255" G="255" B="0" />
+      <Colour Name="amber" R="255" G="255" B="0" />
+    </PageColourDefinition>
+    <PageFontSize>20</PageFontSize>
+    <FitToPage>false</FitToPage>
+    <AlarmTrigger>3840</AlarmTrigger>
+    <RefreshInterval>5</RefreshInterval>
+  </MessageHeader>
+  <TitleBlock Background="lightgrey" >
+    <Row>
+      <RowData Colour="black" Name="Header1">LHR Terminal 1 - All Departures LocalTime              </RowData>
+      <RowData Colour="black" Name="Header2">              Chk      Book   Pax 2  Pax -PaxBags- -CrwBags-         Chk                                 Flt  Cab</RowData>
+    </Row>
+    <Row>
+      <RowData Colour="black" Name="Header4">                                                      Dis  Coach DCS In       Load   Check   2   Clr    2  Clr    2         In                                  Crew Crew Crew</RowData>
+    </Row>
+    <Row>
+      <RowData Colour="black" Name="ETM_CarrierCode"></RowData>
+      <RowData Colour="black" Name="FlightNumber">Flt No</RowData>
+      <RowData Colour="black" Name="OperationalSuffix"></RowData>
+      <RowData Colour="black" Name="ETM_ArrivalAirportCode">  Dest</RowData>
+      <RowData Colour="black" Name="ScheduledDepartureDateTime">    STD</RowData>
+      <RowData Colour="black" Name="EstimatedDepartureDateTime">  ETD</RowData>
+      <RowData Colour="black" Name="SlotDateTime"> Slot</RowData>
+      <RowData Colour="black" Name="SlotTimeContext"> </RowData>
+      <RowData Colour="black" Name="DepartureAircraftStand">Stnd</RowData>
+      <RowData Colour="black" Name="AbbreviatedAircraftRegistration"> Reg</RowData>
+      <RowData Colour="black" Name="EventTweet">     Comment</RowData>
+    </Row>
+  </TitleBlock>
+  <ClientTitleBlock Background="lightgrey" >
+    <Row>
+      <RowData Colour="black" Justify="left" Name="ETM_CarrierCode"></RowData>
+      <RowData Colour="black" Justify="right" Name="FlightNumber">Flt&lt;br /&gt;No</RowData>
+      <RowData Colour="black" Justify="left" Name="OperationalSuffix"></RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_ArrivalAirportCode">Dest</RowData>
+      <RowData Colour="black" Justify="right" Name="AbbreviatedAircraftRegistration">Reg</RowData>
+      <RowData Colour="black" Justify="left" Name="DepartureAircraftStand">Stnd</RowData>
+      <RowData Colour="black" Justify="left" Name="ScheduledDepartureDateTime">STD</RowData>
+      <RowData Colour="black" EditEnable="DateTime" EditWidth="0" Justify="left" Name="EstimatedDepartureDateTime">ETD&lt;br /&gt;TOBT</RowData>
+      <RowData Colour="black" Justify="left" Name="TargetStartupApprovalDateTime">TSAT</RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_EstimatedDepartureDateTimeContext">Dp</RowData>
+      <RowData Colour="black" Justify="left" Name="SlotDateTime">Slot</RowData>
+      <RowData Colour="black" Justify="left" Name="SlotTimeContext"></RowData>
+      <RowData Colour="black" EditEnable="AlphaNumeric" EditWidth="140" Justify="left" Name="EventTweet">Comment</RowData>
+    </Row>
+  </ClientTitleBlock>
+  <DataBlock Background="black" AltBackground="darkgrey">
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>970 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>LHR</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>HAJ</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 970</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="ETM_ArrivalAirportCode">HAJ     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration"> UOD</RowData>
+      <RowData Colour="default" Name="DepartureAircraftStand">105 </RowData>
+      <RowData Colour="default" Name="ScheduledDepartureDateTime">2035</RowData>
+      <RowData Colour="default" Name="EstimatedDepartureDateTime">2050</RowData>
+      <RowData Colour="default" Name="TargetStartupApprovalDateTime">2050</RowData>
+      <RowData Colour="default" Name="ETM_EstimatedDepartureDateTimeContext">  </RowData>
+      <RowData Colour="amber" Name="SlotDateTime">2105</RowData>
+      <RowData Colour="default" Name="SlotTimeContext">N  </RowData>
+      <RowData Colour="default" Name="EventTweet">                                                                                                                                            </RowData>
+    </Row>
+  </DataBlock>
+  <FooterBlock Background="white">
+  </FooterBlock>
+</PageDisplayFormat>

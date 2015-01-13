@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+		<!-- Mobile viewport optimization http://goo.gl/b9SaQ -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=0" />	
+	  	<meta name="HandheldFriendly" content="True" />
+	  	<meta name="MobileOptimized" content="320" />
+	  	<!-- put in to ensure that scripts run correctly for browsers on android devices -->
+	  	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	  	<!-- put in to ensure browser behaves correctly in Android devices -->
+	  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	  	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	  	
+	  	<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading  -->
+	  	<meta http-equiv="cleartype" content="on" />
+	  	
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"  />
+    <link rel="stylesheet" type="text/css" href="css/etmtable.css"  />
+    <link rel="stylesheet" type="text/css" href="css/progressbar.css"  />
+
+    <!--script src="js/app/cook.js"></script-->
+    <script src="js/app/utility.js"></script>
+    <script src="js/app/dashboard.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery-ui-1.9.0.js"></script>
+    <script src="js/jquery.dataTables.js"></script>
+    <script src="js/ColReorder.min.js"></script>
+    <script src="js/ColVis.min.js"></script>
+    <script src="js/dataTables.scroller.min.js"></script>
+    <script src="js/FixedColumns.min.js"></script>
+    <script src="js/FixedHeader.min.js"></script>
+    <script src="js/progressbar.js"></script>
+    <!-- <script src="js/jquery.jeditable.js"></script> -->
+    <script src="js/jquery.editinplace.js"></script>
+    
+    <script src="js/jquery.ui.touch-punch.min.js"></script> <!--must be at last-->
+
+    <title>ETM+</title>
+</head>
+
+<!--	@import "../css/demo_page.css";
+	@import "../css/demo_table.css";
+-->
+
+<style type="text/css" title="currentStyle">
+
+
+</style>
+<script>
+
+jQuery.fn.center = function () {
+	this.css("position","absolute");
+    	this.css("top",($('#navbar').outerHeight() + 5) + "px");
+  
+	this.css("left", Math.max(0, ($(window).width() - $(this).outerWidth()) / 2) + "px");
+	return this;
+}
+
+$(document).ready(
+	function Init() {
+});
+
+function checkwidth(str) {
+	var scr_width = $(window).width();
+	if(scr_width < 360){}
+}
+
+function getTitle(){
+	// airport name + code + Terminals + Arrivals/Departures + Time
+	var urlParam = getURLParam();
+	var strTitle = urlParam["STNTXT"] + '(' + urlParam["STNCOD"] + ') '  +'<br/>'+  
+		(urlParam["STNTRM"] ? 'Terminal(s) ' : 'All Terminals') + urlParam["STNTRM"] + 
+		' - ' + getFlighttype(urlParam["STNDA"]) + 
+		' (' + urlParam["STNTIM"] + ' Time)';
+	
+	return strTitle;
+}
+
+var dataTable = null;
+var hTable = null;
+var dataSettings = null;
+var dataHtml = null;
+var gzFile = '';
+var xsl = '';
+var xml = '';
+var newxml = '';
+var diffxml = '';
+
+function displayResult() {
+	
+	jsfnInit(); // adds functions for string trim
+	var location = window.location.href;
+	gzFile = location.substring(location.indexOf("=") + 1);
+	
+	xml = loadXMLDoc("../ETMclient.jsp?gzFile=" + gzFile, null);
+	xsl = loadXMLDoc("etmpush.xsl", null);
+	dataHtml = getXML2dataHtml(xsl, xml);
+	
+	InitdataTable(dataHtml);
+	refreshLoop();
+}
+
+function getXML2dataHtml(xsl, xml) {
+	var data = null;
+
+        if (window.ActiveXObject) {
+                data = xml.transformNode(xsl);
+        }
+        // code for Mozilla, Firefox, Opera, etc.
+        else if (document.implementation && document.implementation.createDocument) {
+                xsltProcessor = new XSLTProcessor();
+                xsltProcessor.importStylesheet(xsl);
+                data = xsltProcessor.transformToFragment(xml, document);
+        }
+
+	return data;
+}
+
+function dataConf() {
+        this.bSorting = true;
+        this.bHighlight = true;
+	this.bEditing = false;
+        this.bfixHeader = true;
+        this.bfixColumn = false;
+        this.bHideBorder = false;
+        this.bHideColumn = false;
+        this.bFilter = false;
+        this.bDragging = true;
+        this.nfontsize = 11;
+        this.nrefreshIntv = 10;
+        this.bsaveState = true;
+}
+
+var bresetDragging = false;
+var stconf = new dataConf();
+var dataclone = null;
+var tick = 10;
+var nInterID;
+var breInitTable = false;
+var aoCol = new Array();
+
+function InitdataTable(data) {
+
+	var strDom = 'Cfrt<"bottom_info"ilp>';
+	var nIx = 0;
+	var dconf = JSON.parse(Get_Cookie('DataConf'));
+
+	$('#etm').html(data);
+	nIx = $('#FlightNumber').index() + 1;
+	$('.FixedHeader_Cloned').remove();
+	
+//	if(!aoCol.length)
+//		$("#flights thead th").each(function() { aoCol.push({"sName": $(this).attr("id"), "sClass": $(this).attr("class")});});
+
+	if(dconf) stconf = dconf;
+	
+	if(stconf.bfixColumn) {
+
+	        dataTable = $('#flights').dataTable( {
+        	        "sDom":         'frt<"bottom_info"i>',
+	                "bSort":        stconf.bSorting,
+        	        "sScrollX": 	"100%",
+			"sScrollY": 	"600px",
+                	"bScrollCollapse": true,
+			"bPaginate": false,
+                        "oLanguage": {
+                           "oPaginate": {
+                                "sNext": '',
+                                "sPrevious": '',
+                                "sEmptyTable": "No flight data available."
+                                }
+			   }
+        	});
+	}
+	else {
+		if(stconf.bDragging) { strDom = "R" + strDom; }
+
+        	dataTable = $('#flights').dataTable( {
+                	"sDom":         strDom,
+	                "bStateSave":   stconf.bsaveState,
+        	        "bSort":   	stconf.bSorting,
+        	        "iCookieDuration": 31536000000,
+                	"fnStateSave": function (oSettings, oData) {
+                        	    localStorage.setItem( 'DataTables_' + window.location.pathname, JSON.stringify(oData) );
+	                },
+        	        "fnStateLoad": function (oSettings) {
+                	            return JSON.parse( localStorage.getItem('DataTables_' + window.location.pathname) );
+	                },
+			"iDisplayLength": 100,
+			"aLengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]],
+			"oLanguage": {
+			   "oPaginate": {
+                        	"sNext": '',
+	                        "sPrevious": '',
+				"sEmptyTable": "No flight data available."
+				}
+			},
+			
+			"oColVis": {
+			  "bShowAll": true,
+		          "fnLabel": function ( index, title, th ) {
+				    if(index == 0) return '';
+			            return ($(th).find( "h3" ).html()).replace(/<br>/g, " ");
+		        	}
+			}
+ 		});
+	}
+
+	if(stconf.bDragging) 
+		$("#flights thead th").sortable();
+
+        //apply new settings
+	 if(!stconf.bfixColumn) {
+                hTable = new FixedHeader( dataTable );
+        }
+        else {
+                hTable = null;
+        }
+
+	updateChanges();
+        
+	if(stconf.bfixColumn) {
+		ColReorder.fnReset(dataTable);
+                new FixedColumns( dataTable, {
+                        "iLeftColumns": nIx
+                });
+        }
+
+	dataSettings = dataTable.fnSettings();
+
+	$('#sorting').prop('checked', stconf.bSorting);
+        $('#fixheader').prop('checked', stconf.bfixHeader);
+        $('#border').prop('checked', stconf.bHideBorder);
+        $('#fontsize').val(stconf.nfontsize);
+        $('#resetdragging').prop('checked', bresetDragging);
+        $('#highlight').prop('checked', stconf.bHighlight);
+        $('#editing').prop('checked', stconf.bEditing);
+        $('#fixcolumn').prop('checked', stconf.bfixColumn);
+        $('#dragging').prop('checked', stconf.bDragging);
+        $('#refreshinterval').val(stconf.nrefreshIntv);
+        $('#filter').prop('checked', stconf.bFilter);
+        $('#hidecolumn').prop('checked', stconf.bHideColumn);
+
+	$("#fixcolumn").change();
+	
+	setupControls();
+	
+	breInitTable = false;
+}
+
+function setupControls() {
+	$('.dataTables_length label').addClass('form-inline');
+
+        $(".ColVis_MasterButton").click(function(){
+                $('.ColVis_Button').css('width', 'auto');
+                $('.ColVis_collection').css('width', 'auto');
+        });
+	
+	$("#flights tbody tr").click( function( e ) {
+        if ( $(this).hasClass('row_selected') ) {
+            $(this).removeClass('row_selected');
+        }
+        else {
+            dataTable.$('tr.row_selected').removeClass('row_selected');
+            $(this).addClass('row_selected');
+        }
+    });
+};
+
+var selectedid = -1;
+function editComment(id){
+	selectedid = '#' + 'comment-' + id;
+	$( "#dialog-form" ).dialog( "open" );
+}
+</script>
+
+</head>
+<body onload="displayResult()">
+<div style="margin: 0 1% 0 1%;">
+	<div id="navbar" class="navbar">
+	    <div class="navbar-inner">
+	        <div class="container-fluid">
+	            <a class="pull-left" style="margin-top: 7px; margin-right: 5px;" href="index.html">
+	                <img src="images/avatar.png" style="max-height: 24px;" />
+	            </a>
+	            <h1><a class="brand" href="index.html">ETM</a></h1>
+	            <div class="nav-collapse">
+	                <ul class="nav pull-right">
+                            <li><a onclick="openSettings();" style="cursor:pointer;">
+                                <img src="images/pull24.png"
+                                style="max-height: 20px; margin-right: 5px;" />Settings</a></li>
+	                    <li><a href="settings.html">
+	                    	<img src="images/pull24.png" 
+	                    	style="max-height: 20px; margin-right: 5px;" />Other Airports</a></li>
+	                    <li><a href="https://auth.baplc.com/logout/countdown.html">
+	                    	<img src="images/logout.png" 
+	                    	style="max-height: 20px; margin-right: 5px;" />Logout</a></li>                            
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div id="dialog-form" title="Comments">
+	    <p class="validateTips">Update your comments.</p>
+	 
+	    <form>
+	    <fieldset>
+<!-- 	        <label for="comment">Comments:</label> -->
+	        <textarea type="text" name="comment" id="usercomment" style="width:95%;height:60px;" class="text ui-widget-content ui-corner-all" /></textarea>
+	    </fieldset>
+	    </form>
+	</div>
+	<div id="etm"></div>
+	<!-- <button onclick="refreshdata();" value="update">Refresh</button> -->
+
+<div class="toggler">
+  <div id="settings" class="panel ui-widget-content ui-corner-all" style="color: #ffffff;">
+	<div id="setting-content" class="cansrink modern-ui" style="margin:5px">
+		<h3>Settings</h3>
+		<p><i>Customise your ETM table view.</i></p>
+                <a id="close-settings" class="pull-right" onClick="closeSettings();">
+                        <img src="images/close-white.png" style="max-height:48px; position:relative; top:-55px; cursor:pointer;" />
+                </a>
+
+		<table style="margin:5px;" cellpadding="20" align="left">
+                        <tr>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="sorting">
+                                        <span>Enable Sorting</span>
+                                        </label>
+                                </td>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="editing">
+                                        <span>Enable Editing</span>
+                                        </label>
+                                </td>
+                        <tr>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="dragging">
+                                        <span>Enable Dragging</span>
+                                        </label>
+                                </td>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="resetdragging">
+                                        <span>Reset Dragging</span>
+                                        </label>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="fixheader">
+                                        <span>Enable Fixed Header</span>
+                                        </label>
+                                </td>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="fixcolumn">
+                                        <span>Enable Fixed Column</span>
+                                        </label>
+                                </td>
+                        </tr>
+                        </tr>
+                                <tr>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="border">
+                                        <span>Hide Borders</span>
+                                        </label>
+                                </td>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="highlight">
+                                        <span>Highlight Changes</span>
+                                        </label>
+                                </td>
+                        </tr>
+			<tr>
+				<td> 
+					<label class="input-control switch">
+				        <input type="checkbox" id="filter">
+				        <span>Show Filters</span>
+					</label>
+				</td>
+                                <td>
+                                        <label class="input-control switch">
+                                        <input type="checkbox" id="hidecolumn">
+                                        <span>Show/Hide Columns</span>
+                                        </label>
+                                </td>
+  			</tr>
+                        <tr>
+				<td>
+					<div class="input-control text">
+					<span>Refresh Interval: </span>
+				        <input type="text" placeholder="Sec." id="refreshinterval" style="width:25px;height:22px;" value="10"/>
+					</div>	
+                                </td>
+                                <td>
+					<div class="input-control select">
+                                        <span>Font Size: </span>
+					<select  id="fontsize" style="width:65px;">
+					    <option value="8">8</option>
+					    <option value="9">9</option>
+					    <option value="10">10</option>
+					    <option value="11" selected>11</option>
+					    <option value="12">12</option>
+					    <option value="13">13</option>
+					    <option value="14">14</option>
+					    <option value="15">15</option>
+					    <option value="16">16</option>
+					    <option value="17">17</option>
+					    <option value="18">18</option>
+					    <option value="19">19</option>
+					    <option value="20">20</option>
+					    <option value="21">21</option>
+					    <option value="22">22</option>
+					    <option value="23">23</option>
+					    <option value="24">24</option>
+					</select>
+                                        <!-- <span id="sizecheck">AaBbCd</span> -->
+					</div>
+                                 </td>
+                        </tr>
+			<tr>
+                                <td>
+					<input type="button" onclick="saveSettings();" class="winbtn" style="margin:5px;width:80px;"  value="Save"/>
+        	                        <input type="button" onclick="closeSettings();" class="winbtn" style="margin:5px;width:80px;"  value="Cancel"/>
+				</td>
+				<td>
+                                        <input type="button" onclick="resetSettings();" id="resetall" class="winbtn" style="margin:5px;width:80px;background-color:#b91d47;" value="Reset All"/>
+                                </td>
+			</tr>
+		<table>
+	</div>
+  </div>
+</div>
+
+</body>
+
+<script>
+// settings dialog
+function closeSettings() {
+	$("#settings").hide('slide',{direction: 'up', percent: 100}, 500);
+
+}
+
+function resetSettings() {
+	if(confirm('All current settings will be lost. Are you sure you want to reset all settings?')) {
+		localStorage.removeItem('DataTables_' + window.location.pathname);
+		closeSettings();
+	}
+}
+
+function saveSettings() {
+	
+	//Read new settings
+	stconf.bSorting = $('#sorting').prop('checked');
+	stconf.bEditing = $('#editing').prop('checked');
+	stconf.bfixColumn = $('#fixcolumn').prop('checked');
+	
+	stconf.bHideBorder = $('#border').prop('checked');
+	stconf.nfontsize = $('#fontsize').val();
+	stconf.bHighlight =  $('#highlight').prop('checked');
+	stconf.nrefreshIntv =$('#refreshinterval').val();
+	stconf.bFilter = $('#filter').prop('checked');
+	stconf.bHideColumn = $('#hidecolumn').prop('checked');
+
+	if(!stconf.bfixColumn) {
+		bresetDragging = $('#resetdragging').prop('checked');
+		stconf.bfixHeader = $('#fixheader').prop('checked');
+		stconf.bDragging = $('#dragging').prop('checked');
+	}
+
+	Set_Cookie('DataConf', JSON.stringify(stconf));
+	
+	//apply new settings
+	if(breInitTable) {
+		if(newxml) dataHtml = getXML2dataHtml(xsl, newxml);
+		InitdataTable(dataHtml);
+	}
+	else {
+		updateChanges();
+	}
+
+	closeSettings();
+}
+
+function updateChanges() {
+	// to improve performance
+
+        showBorder(stconf.bHideBorder);
+        changeFontsize(stconf.nfontsize);
+        if (bresetDragging) {
+                ColReorder.fnReset(dataTable);
+                bresetDragging = false;
+		$('#resetdragging').prop('checked', false);
+        }
+	
+        stconf.bFilter ?  $('.dataTables_filter').show() : $('.dataTables_filter').hide();
+        stconf.bHideColumn ? $('.ColVis').show() : $('.ColVis').hide();
+	if(stconf.bfixHeader && !stconf.bfixColumn) {
+		$('.FixedHeader_Cloned').show();
+		$('.FixedHeader_Cloned').offset({top: ($('#flights thead').offset().top - 1)});
+	} 
+	else {
+		 $('.FixedHeader_Cloned').hide();
+	}
+
+        // add edit class to make editable
+        if(stconf.bEditing) {
+                $('#flights thead th h3').each(function() { if($(this).attr("title")) 
+				{$('#flights tbody td:nth-child('+(parseInt($(this).parent().index()) + 1 ) +')').addClass('edit')} });
+/*
+	        $('.edit').editable("", {
+		      url: "",
+        	      indicator : "<img src='img/indicator.gif'>",
+	              tooltip   : "Click to edit...",
+        	      cssclass  : "jeditable",
+		      height	: "auto",
+	              placeholder: '',
+	              event     : "click"
+        	  });
+*/
+	$(".edit").editInPlace({
+		text_style: 'font-size:' + stconf.fontsize + ';margin:0;',
+		callback: function(original_element, html, original){
+			//$("#updateDiv1").html("The original html was: " + original);
+			//$("#updateDiv2").html("The updated text is: " + html);
+			return(html);
+		}
+	});
+
+	}
+	else {
+		$('#flights thead th h3').each(function() { if($(this).attr("title"))
+                                {$('#flights tbody td:nth-child('+(parseInt($(this).parent().index()) + 1 ) +')').removeClass('edit')} });
+	}
+
+	clearInterval(nInterID);
+	if(stconf.bHighlight) {
+		nInterID = setInterval("blinkChanges('blink')", 1000);
+	}
+}
+
+$('#sorting,#editing,#fixcolumn').each(function(){
+    $(this).change(function(){
+        //track changes for '#sorting,#editing,#fixcolumn'
+	breInitTable = true;
+    });
+});
+
+$("#fixcolumn").change(function() {
+	if($('#fixcolumn').prop('checked')) {
+		$('#fixheader,#dragging,#resetdragging').prop('disabled', true);
+	}
+	else {
+		$('#fixheader,#dragging,#resetdragging').prop('disabled', false);
+	}
+});
+
+function changeFontsize(val) {
+	if(val) {
+		$("#flights tr td").css("font-size", val + "pt");
+        	$("#flights tr th h3").css("font-size", (parseInt(val) * 1.2) + "pt");
+		$('#flights tbody tr td').css("line-height", parseInt((parseInt(val) * 1.82)) + "px");
+		$('#flights thead tr th').css("line-height", parseInt((parseInt(val) * 1.82)) + "px");
+		if(hTable) hTable.fnUpdate();
+	}
+}
+
+function showBorder(val) {
+        if(val) {
+                $("table.normal, table.normal tr td, table.normal tr th").css("border", "0px");
+        }
+	else {
+                $("table.normal, table.normal tr td, table.normal tr th").css("border", "1px solid rgb(0, 0, 0)");
+	}
+}
+
+function openSettings(){
+        $("#settings").center();
+        $("#settings").show('slide',{direction: 'up', percent: 100}, 500);
+
+//      $("#dialog").dialog().show('slide',{percent:100}, 500);
+//      $("#settings").slideToggle("slow");
+//      $("#effect").slideDown("slow");
+}
+
+var totalcnt = 10;
+var passcnt = 0;
+var strcnt = 0;
+var brefreshing = false;
+var timer = 0;
+
+function refreshLoop() {
+
+	if (strcnt == 0) {
+		strcnt = new Date().getTime();
+		totalcnt = stconf.nrefreshIntv;
+	}
+
+	passcnt = ((new Date().getTime()) - strcnt)/1000;
+	if (passcnt >= totalcnt && !brefreshing) {
+		//timer = setTimeout('requestdata("../ETMclient.jsp?gzFile=" + gzFile)', 1);
+		requestdata("../ETMclient.jsp?gzFile=" + gzFile);
+		strcnt = 0;
+	}
+	else if(brefreshing){
+		log('skipping this time');
+	}
+
+	var diff = (totalcnt - passcnt) > 0 ? parseInt(totalcnt - passcnt) : 0;
+	var per = diff/totalcnt;
+	progressBar(per * 100, $('#progressBar'), 'Refreshing in ' + diff + ' sec..');
+	setTimeout('refreshLoop()', 1000);
+}
+
+var timetoload = 0;
+function requestdata(dname) {
+
+  try {
+	brefreshing = true;
+	if(!timetoload)
+		timetoload = new Date().getTime();
+
+        if (window.XMLHttpRequest) {
+                xhttp = new XMLHttpRequest();
+        } else {
+                xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xhttp.onreadystatechange = function() {
+
+                if (xhttp.readyState == 4) {
+                        if (xhttp.status == 200) {
+				try {
+        	        		var load200 = new Date().getTime();
+					var headers = xhttp.getAllResponseHeaders();
+                        	        var baauthheader = xhttp.getResponseHeader("ba-sso-auth")
+                                	if (baauthheader)
+                                        	ETMAdmin = baauthheader.search(/etmadmin/i);
+	                                else
+        	                                ETMAdmin = -1;
+                	                newxml = xhttp.responseXML;
+					tempxml.push(copyNode(newxml)); //keep track of last 3 changes for blink
+	
+					diffxml = diffDatajs(xml, newxml);
+					updateDataTablejs(diffxml);
+					xml = newxml;
+
+/*					if (stconf.bHighlight)
+						MarkDifferencesInXml(xml, newxml);
+
+					dataHtml = getXML2dataHtml(xsl, xml);
+					InitdataTable(dataHtml);
+*/
+  	                              if (tempxml.length < 4)
+        	                                setTimeout('xml=copyNode(tempxml[0]);', 100); 
+                	                else
+                        	                setTimeout('xml=copyNode(tempxml.shift());', 100);
+	
+					brefreshing = false;
+
+					var ctime = new Date();
+					timetoload = (ctime.getTime()) - timetoload;
+					load200 = (ctime.getTime()) - load200;
+					log('Last data loaded in ' + (timetoload/1000) + '(' + load200/1000  + ')(' + 
+					ctime.getDate() + ', ' + ctime.getHours() + ':' + ctime.getMinutes() + ':' + ctime.getSeconds() + ')');
+
+					timetoload = 0;
+				} catch(ex) {
+					brefreshing = false;
+					log(ex);
+				}
+			}
+		}
+	}
+        xhttp.open("GET", dname, true);
+	try { xhttp.responseType = 'msxml-document'; } catch(e){}
+        xhttp.send("");
+
+   } catch (ex) {
+	brefreshing = false;
+	log(ex);
+   }
+}
+
+function updateDataTablejs(dxml) {
+
+	if(!dxml) return;
+
+        var tick = new Date().getTime();
+        var uKey = dxml.getElementsByTagName("updated")[0].getElementsByTagName("row");
+        var dKey = dxml.getElementsByTagName("deleted")[0].getElementsByTagName("row");
+        var nKey = dxml.getElementsByTagName("added")[0].getElementsByTagName("row");
+
+        if(!uKey.length && !dKey.length && !nKey.length) return; // not need go further if there is no update
+
+        var utick = new Date().getTime();
+        var nodes = dataTable.fnGetNodes();
+	var ar_newdata = Array();
+
+
+        for(i = 0, ucnt = uKey.length; ucnt > 0 && i < uKey.length; i++) {
+	        for (n = 0; n < nodes.length; n++) {
+	                var node_key = $(nodes[n].getElementsByTagName("keydata")[0]).text().replace(/\s+/g, ' ');
+
+                        if ($(uKey[i].getElementsByTagName("keydata")[0]).text().replace(/\s+/g, ' ') == node_key) {
+                                // update
+                                //log("match found node : ");
+                                var row = uKey[i].getElementsByTagName("rowdata");
+                                var ardata = Array();
+                                var tr = nodes[n].getElementsByTagName("td");
+
+                                ardata.push(getXMLasString(uKey[i].getElementsByTagName("keydata")[0]));
+                                for(cl = 1; cl < dataSettings.aoColumns.length; cl++) {
+                                        var cl_org = dataSettings.aoColumns[cl]["_ColReorder_iOrigCol"];
+                                        if(cl_org == undefined) cl_org = cl;
+                                        var cell = row[cl_org-1];
+                                        $(tr[cl]).attr('class', cell.getAttribute("colour"));
+
+                                        ardata[cl] = $(cell).text();
+                                }
+                                dataTable.fnUpdate(ardata, n, undefined, false, false);
+                                ucnt--;
+				break;
+                        }
+                }
+	}
+	
+	utick = ((new Date().getTime()) - utick)/1000;
+       // delete and update can't be in same loop, it lose the indexing and creates problem 
+	var dtick = new Date().getTime();
+
+        for(i = 0, dcnt = dKey.length; dcnt > 0 && i < dKey.length; i++) {
+	        for (n = 0; n < nodes.length; n++) {
+                	var node_key = $(nodes[n].getElementsByTagName("keydata")[0]).text().replace(/\s+/g, ' ');
+
+			if ($(dKey[i].getElementsByTagName("keydata")[0]).text().replace(/\s+/g, ' ') == node_key) {
+	        	       // deleted
+	        	       dataTable.fnDeleteRow(n);//, null, false);
+		               dcnt--;
+			}
+		}
+        }
+
+	dtick = ((new Date().getTime()) - dtick)/1000;
+
+        var ntick = new Date().getTime();
+
+        for(i = 0, ncnt = nKey.length; ncnt > 0 && i < nKey.length; i++) {
+		var row = nKey[i].getElementsByTagName("rowdata");
+		var ardata = Array();
+
+		ardata.push(getXMLasString(nKey[i].getElementsByTagName("keydata")[0]));
+		for(cl = 1; cl < dataSettings.aoColumns.length; cl++) {
+			var cl_org = dataSettings.aoColumns[cl]["_ColReorder_iOrigCol"];
+			if(cl_org == undefined) cl_org = cl;
+			var cell = row[cl_org-1];
+			ardata[cl] = $(cell).text();
+		}
+               	ar_newdata.push(ardata);
+		ncnt--;
+	}
+
+
+        if(ar_newdata.length){
+
+                var idx = dataTable.fnAddData(ar_newdata);
+                nodes = dataTable.fnGetNodes();
+                for(i = 0; i < idx.length; i++) {
+                        var tr = nodes[idx[i]].getElementsByTagName("td");
+                        var row = nKey[i].getElementsByTagName("rowdata");
+
+                        $($(tr).get(0)).css('display', 'none');
+                        $(tr).css("font-size", stconf.nfontsize + "pt", "line-height", parseInt((parseInt(stconf.nfontsize) * 1.82)) + "px");
+
+                        for(cl = 1; cl < dataSettings.aoColumns.length; cl++) {
+                                var cl_org = dataSettings.aoColumns[cl]["_ColReorder_iOrigCol"];
+                                if(cl_org == undefined) cl_org = cl;
+                                var cell = row[cl_org-1];
+                                $($(tr).get(cl)).attr({class: cell.getAttribute("colour"), align: $($("thead th h3").get(cl)).attr("align")});
+                        }
+                }
+                if(hTable) hTable.fnUpdate();
+        }
+
+	ntick = ((new Date().getTime()) - ntick)/1000;
+	tick = ((new Date().getTime()) - tick)/1000;
+
+        if(uKey.length || dKey.length || nKey.length)
+                log("(u:" + uKey.length + "(" + utick + "),d:" + dKey.length + "(" + dtick + "),n:" + nKey.length  + "(" + ntick + "))/" + nodes.length + "(" + dataSettings.fnRecordsTotal() + ") in " + tick + " sec");
+}
+
+
+
+function updateDataTable(dxml) {
+	var tick = new Date().getTime();
+	var uKey = $(dxml).find("updated row");
+	var dnKey = $(dxml).find("new_deleted row");
+	var nodes = dataTable.fnGetNodes();
+
+	if(!uKey.length && !dnKey.length) return; // not need go further if there is no update
+
+	var itick = new Date().getTime();
+	var avu = 0;
+
+	for(i = 0, ucnt = uKey.length; i < uKey.length; i++) {
+		//itick = new Date().getTime();
+                for (n = 0; ucnt > 0 && n < nodes.length; n++) {
+                        var node_key = $($(nodes[n]).find("keydata").get(0)).text().replace(/\s+/g, ' ');
+
+			if ($($(uKey[i]).find("keydata").get(0)).text().replace(/\s+/g, ' ') == node_key) {
+				// update
+				//log("match found node : ");
+				var utick = new Date().getTime();
+				var row = $(uKey[i]).children();
+				var ardata = Array();
+				var tr = $(nodes[n]).children('td');
+
+				ardata.push(getXMLasString($(row[0]).get(0)));
+				for(cl = 1; cl < dataSettings.aoColumns.length; cl++) {
+					var cl_org = dataSettings.aoColumns[cl]["_ColReorder_iOrigCol"];
+					if(cl_org == undefined) cl_org = cl;
+					var cell = $(row[cl_org]).get(0);
+					$($(tr).get(cl)).attr('class', cell.getAttribute("colour"));
+					
+					ardata[cl] = $(cell).text();
+				}
+				dataTable.fnUpdate(ardata, n, undefined, false, false);
+				ucnt--;
+	        	        //log("single loop : " + ((new Date().getTime()) - utick)/1000 );
+			}
+		}
+		//itick = ((new Date().getTime()) - itick)/1000;
+		//if (!avu) avu = itick;
+		//avu = ((avu + itick)/2).toFixed(2);
+	}
+	itick = ((new Date().getTime()) - itick)/1000;
+	if (!avu) avu = itick;
+	//dataTable.fnDraw();
+        //log("undate loop : " + uKey.length + " (" + ((new Date().getTime()) - itick)/1000 + ")" );
+
+        itick = new Date().getTime();
+	var avd  = 0;
+
+	var ar_newdata = Array();
+	var ar_newIdx = Array();
+        for(i = 0, dncnt = dnKey.length; i < dnKey.length; i++) {
+                //itick = new Date().getTime();
+		var deleted = dncnt;
+                for (n = 0; dncnt > 0 && n < nodes.length; n++) {
+                        var node_key = $($(nodes[n]).find("keydata").get(0)).text().replace(/\s+/g, ' ');
+                        if ($($(dnKey[i]).find("keydata").get(0)).text().replace(/\s+/g, ' ') == node_key) {
+                                // deleted
+                                //log("delete match found node : ");
+                                dataTable.fnDeleteRow(n);//, null, false);
+                                dncnt--;
+                        }	
+                }
+		if(deleted == dncnt) {
+			//new
+			var row = $(dnKey[i]).children();
+			var ardata = Array();
+
+			ardata.push(getXMLasString($(row[0]).get(0)));
+			for(cl = 1; cl < dataSettings.aoColumns.length; cl++) {
+				var cl_org = dataSettings.aoColumns[cl]["_ColReorder_iOrigCol"];
+				if(cl_org == undefined) cl_org = cl;
+				var cell = $(row[cl_org]).get(0);
+				ardata[cl] = $(cell).text();
+			}
+			ar_newdata.push(ardata);
+			ar_newIdx.push(i)//;
+			dncnt--;
+		}
+                //itick = ((new Date().getTime()) - itick)/1000;
+                //if (!avd) avd = itick;
+                //avd = ((avd + itick) /2).toFixed(2);
+        }
+                itick = ((new Date().getTime()) - itick)/1000;
+                if (!avd) avd = itick;
+	if(ar_newdata.length > 0){
+		var idx = dataTable.fnAddData(ar_newdata);
+		nodes = dataTable.fnGetNodes();
+		for(i = 0; i < idx.length; i++) {
+			var tr = $(nodes[idx[i]]).children('td');
+			var row = $(dnKey[ar_newIdx[i]]).children();
+			$($(tr).get(0)).css('display', 'none');
+			$(tr).css("font-size", stconf.nfontsize + "pt", "line-height", parseInt((parseInt(stconf.nfontsize) * 1.82)) + "px");
+			for(cl = 1; cl < dataSettings.aoColumns.length; cl++) {
+				var cl_org = dataSettings.aoColumns[cl]["_ColReorder_iOrigCol"];
+				if(cl_org == undefined) cl_org = cl;
+				var cell = $(row[cl_org]).get(0);
+				$($(tr).get(cl)).attr({class: cell.getAttribute("colour"), align: $($("thead th h3").get(cl)).attr("align")});
+			}	
+		}
+		if(hTable) hTable.fnUpdate();
+	}
+
+	
+	
+        //log("del loop : " + dnKey.length + " (" + ((new Date().getTime()) - itick)/1000 + ")" );
+
+	if(uKey.length || dnKey.length)
+		log("(u:" + uKey.length + "(" + avu + "),d:" + (dnKey.length - ar_newdata.length) + "(" + avd + "),n:" + ar_newdata.length  + ")/" + nodes.length + "(" + dataSettings.fnRecordsTotal() + ") in " + ((new Date().getTime()) - tick)/1000 + " sec");
+}
+
+function diffData(oldx, newx) {
+
+	var rxml;
+	var tick = new Date().getTime();
+
+	try {
+		if (!oldx || !newx)
+			return;
+
+		rxml = loadXMLDoc(null, '<CHANGEDATA><new/><updated/><new_deleted/></CHANGEDATA>');
+
+		//rxml = $($.parseXML('<CHANGEDATA><new/><updated/><new_deleted/></CHANGEDATA>'));
+		var updated = $(rxml).find("updated");
+		var newdeleted = $(rxml).find("new_deleted");
+
+		dblock1 = $(oldx).find("DataBlock Row").clone();
+		dblock2 = $(newx).find("DataBlock Row").clone();
+
+		for (i = 0; i < dblock1.length; i++) {
+			var keydata = $(dblock1[i]).children("KeyData").get(0);
+			var fltn = $($(keydata).find("FlightNumber").get(0)).text();
+			var row1 = getXMLasString(dblock1[i]);
+			var dn_row = 0; //1 = update 0 = delete
+			for (j = 0; j < dblock2.length; j++) {
+				if (getXMLasString(keydata) == getXMLasString($(dblock2[j]).children("KeyData").get(0))) {
+					dn_row = 1; //row found
+					var row2 = getXMLasString(dblock2[j]);
+
+					if (row1 != row2) {
+						// compare data and add blink to it
+						var bupdate = false;
+						if(stconf.bHighlight) {
+							var oldr = $(dblock1[i]).children("RowData");
+							var newr = $(dblock2[j]).children("RowData");
+							for(c = 0; c < oldr.length; c++) {
+								oval = $(oldr).get(c);
+								nval = $(newr).get(c);
+								if(($(nval).text().trim() != $(oval).text().trim()) || 
+									($(nval).attr("Colour").trim() != $(oval).attr("Colour").trim())) {
+									//log(fltn + '-|- '  + $(oval).text() + '-->' +  $(nval).text());
+									$(nval).text('<blink>' + $(nval).text() + '</blink>');
+									bupdate = true;
+								}
+							}
+						}
+						if(bupdate) {
+							row2 = getXMLasString(dblock2[j]).replace(/<\/?[A-Z]+.*?>/g, function (m) { return m.toLowerCase(); });
+							$(updated).append($(row2));
+						}
+						break;
+					}
+				}
+			}
+			if(dn_row == 0) {
+				// row deleted/new
+				$(newdeleted).append($(row1.replace(/<\/?[A-Z]+.*?>/g, function (m) { return m.toLowerCase(); })));
+			}
+		}
+	} catch (err) {
+		// alert(err.description);
+	}
+
+	log("diffData: " +((new Date().getTime()) - tick)/1000);
+
+	return rxml;
+}
+
+
+function diffDatajs(oldx, newx) {
+
+        var rxml;
+	var tick = new Date().getTime();
+
+        try {
+                if (!oldx || !newx)
+                        return;
+
+                var rxml = loadXMLDoc(null, '<CHANGEDATA><added/><updated/><deleted/></CHANGEDATA>');
+                var updated = rxml.getElementsByTagName("updated")[0];
+                var deleted = rxml.getElementsByTagName("deleted")[0];
+                var added = rxml.getElementsByTagName("added")[0];
+		var ar_nInx = new Array();
+
+                oldblock = oldx.getElementsByTagName("DataBlock")[0].getElementsByTagName("Row");
+                newblock = newx.getElementsByTagName("DataBlock")[0].getElementsByTagName("Row");
+
+                for (i = 0; i < oldblock.length; i++) {
+                        var keydata = oldblock[i].getElementsByTagName("KeyData")[0];
+                        var fltn = $(keydata.getElementsByTagName("FlightNumber")[0]).text();
+                        var row1 = getXMLasString(oldblock[i]);
+                        var drow = 0; //1 = update 0 = delete
+                        for (j = 0; j < newblock.length; j++) {
+                                if (getXMLasString(keydata) == getXMLasString(newblock[j].getElementsByTagName("KeyData")[0])) {
+                                        drow = 1; //row found
+					ar_nInx.push(j); 
+                                        var row2 = getXMLasString(newblock[j]);
+
+                                        if (row1 != row2) {
+                                                // compare data and add blink to it
+                                                var bupdate = false;
+                                                var oldr = oldblock[i].getElementsByTagName("RowData");
+                                                var newr = newblock[j].getElementsByTagName("RowData");
+                                                for(c = 0; c < oldr.length; c++) {
+                                                	oval = oldr[c];
+                                                        nval = newr[c];
+                                                        if(($(nval).text().trim() != $(oval).text().trim()) ||
+                                                        		($(nval).attr("Colour").trim() != $(oval).attr("Colour").trim())) {
+                                                                //log(fltn + '-|- '  + $(oval).text() + '-->' +  $(nval).text());
+                                                		if(stconf.bHighlight) { $(nval).text('<blink>' + $(nval).text() + '</blink>'); }
+								else { $(nval).text($(nval).text()); }
+                                                                bupdate = true;
+                                                        }
+                                                }
+                                                if(bupdate) {
+                                                        row2 = getXMLasString(newblock[j]).replace(/<\/?[A-Z]+.*?>/g, function (m) { return m.toLowerCase(); });
+                                                        $(updated).append($(row2));
+                                                }
+                                        }
+					break;
+                                }
+                        }
+                        if(drow == 0) {
+                                // row deleted/new
+                                $(deleted).append($(row1.replace(/<\/?[A-Z]+.*?>/g, function (m) { return m.toLowerCase(); })));
+                        }
+                }
+		var ncnt = newblock.length - ar_nInx.length;
+		for(j = 0; ncnt > 0 && j < newblock.length; j++ ) {
+			if(ar_nInx.lastIndexOf(j) == -1) {
+				var row = getXMLasString(newblock[j]).replace(/<\/?[A-Z]+.*?>/g, function (m) { return m.toLowerCase(); });
+				$(added).append($(row));
+				ncnt--;
+			}
+		}
+        } catch (err) {
+                // alert(err.description);
+        }
+	
+//	log("diffData: " +((new Date().getTime()) - tick)/1000);
+
+        return rxml;
+}
+
+var datablock1, datablock2;
+var tempxml = new Array();
+function MarkDifferencesInXml(xml1, xml2) {
+	try {
+		if (!xml1 || !xml2)
+			return;
+		datablock1 = xml1.getElementsByTagName("DataBlock")[0]
+				.getElementsByTagName("Row");
+		datablock2 = xml2.getElementsByTagName("DataBlock")[0]
+				.getElementsByTagName("Row");
+		for (i = 0; i < datablock1.length; i++) {
+			if (datablock1[i] && datablock2[i]) {
+				for (j = 0; j < datablock1[i].childNodes.length; j++) {
+					if (getXMLasString(datablock1[i].childNodes[j]) != getXMLasString(datablock2[i].childNodes[j])) {
+						if (datablock1[i].childNodes[j].nodeName != "KeyData") {
+							if (datablock2[i].childNodes[j].childNodes[0]) {
+								var newvalue = datablock2[i].childNodes[j].childNodes[0].nodeValue;
+								datablock2[i].childNodes[j].childNodes[0].nodeValue = "<blink>"
+										+ newvalue + "</blink>";
+							}
+						} else {
+							tempxml.length = 0;
+							return;
+						}
+					}
+
+				}
+			}
+		}
+	} catch (err) {
+		// alert(err.description);
+	}
+}
+
+function reloadXMLDoc(dname) {
+	var restarttime = new Date().getTime();
+	if (window.XMLHttpRequest) {
+		xhttp = new XMLHttpRequest();
+	} else {
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		//nowtime = new Date().getTime();
+		//var secondssinceloaded = (nowtime - restarttime) / 1000;
+		//window.status = window.status + '.' + xhttp.readyState + '.'
+		//		+ secondssinceloaded + '...';
+
+		if (xhttp.readyState == 4) {
+			if (xhttp.status == 200) {
+				//nowtime = new Date().getTime();
+				//secondssinceloaded = (nowtime - restarttime) / 1000;
+				//window.status = window.status + secondssinceloaded + '...';
+				var headers = xhttp.getAllResponseHeaders();
+				baauthheader = xhttp.getResponseHeader("ba-sso-auth")
+				if (baauthheader)
+					ETMAdmin = baauthheader.search(/etmadmin/i);
+				else
+					ETMAdmin = -1;
+				newxml = xhttp.responseXML;
+				tempxml.push(copyNode(newxml)); // .cloneNode(true);
+				
+				//if (highlightchanges)
+				//	MarkDifferencesInXml(xml, newxml);
+				xml = newxml; // xhttp.responseXML; //copyNode(newxml);
+				// //.cloneNode(true);
+                                if (xml.parseError && xml.parseError.errorCode!=0) {
+					window.location.reload(true);
+
+                                }
+				if (window.ActiveXObject) {
+					ex = xml.transformNode(xsl);
+				} else if (document.implementation
+						&& document.implementation.createDocument) {
+					xsltProcessor = new XSLTProcessor();
+					xsltProcessor.importStylesheet(xsl);
+					resultDocument = xsltProcessor.transformToFragment(xml,
+							document);
+					ex = getXMLasString(resultDocument);
+				}
+				if (tempxml.length < 4)
+					setTimeout('xml=copyNode(tempxml[0]);', 100); // .cloneNode(true);
+				else
+					setTimeout('xml=copyNode(tempxml.shift());', 100); // .cloneNode(true);
+				// document.getElementById("etm").innerHTML=ex;
+				//nowtime = new Date().getTime();
+				//secondssinceloaded = (nowtime - restarttime) / 1000;
+				//window.status = window.status + secondssinceloaded + '...';
+				setTimeout('docreloaded(ex);', 1);
+				//nowtime = new Date().getTime();
+				//secondssinceloaded = (nowtime - restarttime) / 1000;
+				//window.status = window.status + '...' + secondssinceloaded
+				//		+ '...';
+			} else
+				window.location.reload(true);
+
+		}
+	}
+
+	xhttp.open("GET", dname, true);
+	xhttp.send("");
+
+	// return xhttp.responseXML;
+}
+
+</script>
+
+<script>
+var blinkUpdate = true;
+function XMLUpdate(){
+	var update = loadXMLDoc(null, $('#xmlupdate').val());
+	var flight = (update.getElementsByTagName("FlightNumber")[0].childNodes[0].nodeValue).trim();
+	var row = update.getElementsByTagName("RowData");
+	
+	for(var i = 0; i < row.length; i++ ){
+		var name = '#' + row[i].getAttribute("Name");
+		var val = row[i].childNodes[0].nodeValue.trim();
+		var color = row[i].getAttribute("Colour");
+		if(blinkUpdate)
+			$('tr:contains(' + flight + ')').find('td').eq($(name).index()).html('<blink>' + val + '</blink>').attr('style', 'color:' + color + ';');
+		else
+			$('tr:contains(' + flight + ')').find('td').eq($(name).index()).text(val).attr('style', 'color:' + color + ';');
+	}
+	
+	setTable();
+}
+
+function addBlink(selector, val){
+	$(selector).html('<blink>' + val + '</blink>');
+}
+
+$(function() {
+    var comment = $( "#usercomment" ),
+        allFields = $( [] ).add( comment ),
+        tips = $( ".validateTips" );
+
+    function updateTips( t ) {
+        tips
+            .text( t )
+            .addClass( "ui-state-highlight" );
+        setTimeout(function() {
+            tips.removeClass( "ui-state-highlight", 1500 );
+        }, 500 );
+    }
+
+    function checkLength( o, n, min, max ) {
+        if ( o.val().length > max || o.val().length < min ) {
+            o.addClass( "ui-state-error" );
+            updateTips( "Length of " + n + " must be between " +
+                min + " and " + max + "." );
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function checkRegexp( o, regexp, n ) {
+        if ( !( regexp.test( o.val() ) ) ) {
+            o.addClass( "ui-state-error" );
+            updateTips( n );
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $( "#dialog-form" ).dialog({
+        autoOpen: false,
+        height: 270,
+        width: 300,
+        modal: true,
+        buttons: {
+            "Update Comments": function() {
+                var bValid = true;
+                allFields.removeClass( "ui-state-error" );
+
+                bValid = bValid && checkLength( comment, "comments", 3, 200 );
+
+                //bValid = bValid && checkRegexp( comment, /^[a-z]([0-9a-z_])+$/i, "Please enter valid comments." );
+
+                if ( bValid ) {
+                	$(selectedid).html(comment.val());
+                	$('.pager').css('width', function() {
+                 	   return  $('#flights').css('width');
+                 	});
+                    $( this ).dialog( "close" );
+                    selectedid = -1;
+                }
+            },
+            Cancel: function() {
+                $( this ).dialog( "close" );
+            }
+        },
+        close: function() {
+            allFields.val( "" ).removeClass( "ui-state-error" );
+        }
+    });
+
+});
+
+</script>
+</html>

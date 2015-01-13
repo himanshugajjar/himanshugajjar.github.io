@@ -1,0 +1,23 @@
+<StationList>
+<Station>
+<StationCode>LHR</StationCode>
+<StationName>London Heathrow</StationName>
+<Terminal>1</Terminal>
+<Terminal>3</Terminal>
+<Terminal>5</Terminal>
+</Station>
+<Station>
+<StationCode>LGW</StationCode>
+<StationName>London Gatwick</StationName>
+<Terminal>N</Terminal>
+</Station>
+<Station>
+<StationCode>LCY</StationCode>
+<StationName>London City Airport</StationName>
+</Station>
+<Station>
+<StationCode>JFK</StationCode>
+<StationName>New York-John F Kennedy</StationName>
+<Terminal>7</Terminal>
+</Station>
+</StationList>

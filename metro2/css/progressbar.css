@@ -1,0 +1,21 @@
+.prog-default {
+	background: #292929;
+	border: 1px solid #111;	
+	border-radius: 5px;	
+	overflow: hidden;
+	box-shadow: 0 0 5px #333;
+	text-align: left;
+}
+.prog-default span {
+	padding-left: 5px;
+	color: #2EFEF7;
+	font-weight: 500;
+}
+.prog-default div {
+	background-color: #2d89ef;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0099FF), to(#2d89ef)); 
+	background: -webkit-linear-gradient(top, #0099FF, #2d89ef); 
+	background: -moz-linear-gradient(top, #0099FF, #2d89ef); 
+	background: -ms-linear-gradient(top, #0099FF, #2d89ef); 
+	background: -o-linear-gradient(top, #0099FF, #2d89ef);
+}

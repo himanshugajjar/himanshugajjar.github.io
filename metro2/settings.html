@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+		<!-- Mobile viewport optimization http://goo.gl/b9SaQ -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />	
+	  	<meta name="HandheldFriendly" content="True" />
+	  	<meta name="MobileOptimized" content="320" />
+	  	<!-- put in to ensure that scripts run correctly for browsers on android devices -->
+	  	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	  	<!-- put in to ensure browser behaves correctly in Android devices -->
+	  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	  	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	  	
+	  	<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading  -->
+	  	<meta http-equiv="cleartype" content="on" />
+	  	
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		
+
+    <link href="css/modern.css" rel="stylesheet"/>
+    <link href="css/modern-responsive.css" rel="stylesheet"/>
+    <link href="css/site.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/freeow.css"  />
+	
+    <!--script src="js/app/cook.js"></script-->
+    <script src="js/app/utility.js"></script>
+    <script src="js/app/dashboard.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.freeow.min.js"></script>
+    <script src="js/FileSaver.js"></script>
+	
+    <title>ETM+</title>
+</head>
+<script>
+</script>
+<body class="modern-ui">
+<div class="page bg-color-white">
+
+	<div id="navbar" class="navbar">
+	    <div class="navbar-inner">
+	        <div class="container-fluid">
+	            <a class="pull-left" style="margin: 3px 5px 0px -10px;" href="index.html">
+                        <img src="images/avatar.png" style="max-height: 34px;" />
+                    </a>
+		    <h1><a class="brand" href="index.html">ETM+</a></h1>
+	            <div class="nav-collapse">
+	                <ul class="nav pull-right">
+	                    <li><a class="active" href="index.html">
+	                    	<img src="images/dashboard.png" style="max-height: 20px; margin-right: 5px;" />Dashboard</a></li>
+	                    <li><a href="https://auth.baplc.com/logout/countdown.html">
+	                    	<img src="images/logout.png" style="max-height: 20px; margin-right: 5px;" />Logout</a></li>                            
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div style="align:middle;">
+	<div id="freeow" class="freeow freeow-center"></div>
+	</div>
+	
+	<!-- Settings -->
+
+	<h2>Airport : </h2>
+	<table style="margin: 0 0 10px 0;">
+		<tr>
+			<td style="padding-left: 0px;">
+				<div class="input-control text" 
+					style="height:25px;font-weight:300;font-size:18px;">
+			        <input id="searchcode" placeholder='Search airport by code (e.g. LHR)' type="text" style="height:30px;"/>
+			    </div>
+			</td>
+			<td width="10">
+				<a href="javascript:searchAirport();">
+	            <img src="images/search.png" style="max-height:30px; margin-right: 5px;" /></a>			
+			</td>
+		</tr>
+    </table>
+
+	
+	<div class="input-control select" style="margin: 0 0 0 0;">
+		<select id="airport" >
+			<airportlist></airportlist>
+		</select>
+	</div>
+	
+	<table class="bordered" style="margin: 0 0 10px 0;">
+		<tr>
+			<td valign="top" style="align:top;padding: 10px 0px 5px 10px;">
+				<div>
+			    	<label class="radio"><input type="radio" id="utctime" name="time" 
+			    	checked="checked" value="UTC"/><h4>UTC Time</h4></label>
+			    	<label class="radio"><input type="radio" id="localtime" name="time" 
+			    	value="LOCAL"/><h4>Local Time</h4></label>
+				</div>
+			</td>
+			<td valign="top" style="padding: 10px 0px 5px 10px;">
+				<div class="input-control select" id="terminals">
+			<!-- 		<label class="checkbox"><input type="checkbox"><span>Terminal 1</span></label>         -->
+			    </div>
+			</td>
+		</tr>
+	</table>
+
+	<h2>Flights : </h2>
+	<div class="input-control select">
+		<select id="flight">
+		    <option value="D">All Departures</option>
+		    <option value="A">All Arrivals</option>
+		</select>
+	</div>
+
+	<h2>Display Mode : </h2>
+	<div class="input-control select">
+		<select  id="displaymode">
+		    <option value="STD">Standard</option>
+		    <option value="TRM">TRM</option>
+<!--		    <option value="KIO">Kiosk</option>
+		    <option value="MOB">Mobile</option> -->
+		</select>
+	</div>
+
+	<button class="bg-color-blue fg-color-white" onclick="viewFlights()" style="width:280px" ><h4>View Flights</h4></button>
+	<br>
+	<br>
+	
+	<h2>Dashboard Buttons : </h2>
+	<h3>Button Colour : </h3>
+	<table class="bordered" style="margin: 0 0 10px 0;">
+		<tr>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-blue">
+				<input type="radio" name="btncolor" value="b" checked="checked"/>
+			    </label>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-yellow">
+				<input type="radio"  name="btncolor" value="y"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-green">
+				<input type="radio"  name="btncolor" value="g"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-pink">
+				<input type="radio"  name="btncolor" value="p"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-greenLight">
+				<input type="radio"  name="btncolor" value="gl"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-red">
+				<input type="radio"  name="btncolor" value="r"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-blueLight">
+				<input type="radio"  name="btncolor" value="bl"/>
+			    </label>
+			</td>
+		</tr>
+		<tr>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-blueDark">
+				<input type="radio"  name="btncolor" value="bd"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-orange">
+				<input type="radio"  name="btncolor" value="o"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-greenDark">
+				<input type="radio"  name="btncolor" value="gd"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-purple">
+				<input type="radio"  name="btncolor" value="pu"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;"
+				onclick="" class="bg-color-pinkDark">
+				<input type="radio"  name="btncolor" value="pd"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;"
+				onclick="" class="bg-color-orangeDark">
+				<input type="radio"  name="btncolor" value="od"/>
+			    </label>
+			</td>
+			<td style="align:center;padding: 5px 0 0 10px;">
+				<label style="height:24px;width:24px;padding: 3px 0 0 5px;" 
+				onclick="" class="bg-color-darken">
+				<input type="radio"  name="btncolor" value="d"/>
+			    </label>
+			</td>
+		</tr>
+	</table> 
+
+	<button class="bg-color-blue fg-color-white" style="width:280px" 
+	onclick="addAirport()"><h4>Add Airport</h4></button>
+<!-- 	<button class="bg-color-red fg-color-white" style="width:137px"><h4>Remove Airport</h4></button> -->
+	<br>
+	<br>
+	<button class="bg-color-red fg-color-white" style="width:280px" 
+	onclick="location.href='editdashboard.html';"><h4>Arrange/Remove Buttons</h4></button>
+	
+	<br>
+
+
+	<h2>Dashboard Setting : </h2>
+ 	<button class="bg-color-blue fg-color-white" onclick='importSettings();'><h4>Import </h4></button> 
+	<button class="bg-color-blue fg-color-white" onclick='exportSettings();'><h4>Export </h4></button>
+	<button class="bg-color-red fg-color-white" onclick='resetSettings();'><h4>Reset </h4></button>
+	<!--input type="file" id="files" name="files[]" /-->
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	
+</div>
+</body>
+<script>
+var fnptr = null;
+
+$(document).ready(
+	function loadAirports() {   
+	var airportdata = '';
+
+	var xmlDoc = loadXMLDoc("stations.xml");
+	var station = xmlDoc.getElementsByTagName("Station");
+
+	for(var i = 0; i < station.length; i++){
+		var code = station[i].getElementsByTagName("StationCode");
+		var name = station[i].getElementsByTagName("StationName");
+		var terminal = station[i].getElementsByTagName("Terminal");
+		var str_terminal = "";
+		
+		for(var j = 0; j < terminal.length; j++){
+			str_terminal += terminal[j].childNodes[0].nodeValue + 
+			(j < (terminal.length - 1)? ',': '');
+		}
+		
+
+		addItemToCmb("airport", 
+			name[0].childNodes[0].nodeValue, 
+				code[0].childNodes[0].nodeValue + '|' + str_terminal, str_terminal );
+	}
+
+	$("airportlist").replaceWith(airportdata);i
+
+	$("#airport").change();
+});
+
+$("#displaymode").change(function() {
+		hideUTC();
+});
+
+function hideUTC() {
+		 if ($("#displaymode").val() == 'TRM') {
+                $('#utctime').parent().hide();
+                $("#localtime").attr('checked',true);
+        }
+        else if ($("#displaymode").val() == 'STD') {
+                $('#utctime').parent().show();
+                $("#utctime").attr('checked',true);
+        }
+}
+
+
+$("#flight").change(function() {
+	changedmod();
+});
+
+/*
+$("#trm0").change(function() {
+        changedmod();
+});
+
+$("input[name = 'terminal']").change(function() {
+        changedmod();
+});
+*/
+
+function changedmod() {
+
+	//change back TRM display mode to STD
+        if ($("#displaymode").val() == 'TRM') {
+                $("#displaymode").val('STD');
+        }
+}
+
+
+function validatedisplaymode() {
+	var airport = document.getElementById("airport");
+		if (airport.value != "LHR|1,3,5") {
+		$("#displaymode option[value='TRM']").remove();
+		}
+		else if ((airport.value == "LHR|1,3,5") && $("#displaymode option[value='TRM']").length == 0) {
+			 $("<option value='TRM'>TRM</option>").appendTo("#displaymode");
+		}
+	}
+
+$("#airport").change(function() {
+	if(this.value) {
+		var str_trm = ''; 
+		var ar_trm = getTerminal($('option:selected', this).attr('value'));
+		if(ar_trm && ar_trm.length) {
+			for(var i = 0; i < ar_trm.length; i++) {
+				str_trm += '<label class="radio" style="font-color:#000;font-size:120%;padding: 2px 0px 5px 30px;">' +
+				'<input id ="trm'+ i + '" name="terminal" type="radio">' +
+				'<span >Terminal ' + ar_trm[i] + '</span></label>';
+			}
+			$("#terminals").html(str_trm);
+		  	$("#terminals").show("slow");
+			$("#trm0").attr('checked',true);
+		}
+	  	else {
+	  		$("#terminals").html(str_trm);
+			$("#terminals").hide("slow");
+	  	}
+	}
+  	else {
+  		$("#terminals").html(str_trm);
+		$("#terminals").hide("slow");
+  	}
+
+	changedmod();	
+	validatedisplaymode();
+	hideUTC();
+});
+
+$('#searchcode').keypress(function (event){
+	
+	if(fnptr){
+		fnptr = setTimeout(function() {callback_searchAirport()}, 500);
+	}
+	else{
+		clearTimeout(fnptr);
+		fnptr = setTimeout(function() {callback_searchAirport()}, 500);		
+	}
+	
+	if (event.keyCode === 13){
+		searchAirport();
+	}
+});
+
+function callback_searchAirport(){
+	fnptr = null;
+	searchAirport();
+}
+
+
+function exportSettings(){
+	var home = new Dashboard();
+	home.loadAllViewSets();
+		
+	var count = Get_Cookie("btnset_cnt");
+        var cookietext = new Array();
+	var longcookietext = '';	
+	
+	for (i = 0; i < count; i++) { 
+		 cookietext[i] = Get_Cookie("btnset" + [i+1]);  
+		 longcookietext += cookietext[i] + "^";
+		}  
+
+	var blob = new Blob([longcookietext], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "cookie.txt");
+}
+
+
+function importSettings(){
+
+	 if(!confirm("Are you sure you want to import? All dashboard buttons will be modified."))
+               { return;}	
+	
+	 // Check for the various File API support.
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+        // Get the reference of the input element.
+        var files = document.getElementById('files').files;
+        console.log(files);
+	
+        // Check if file has been selected.
+        if (!files.length) {
+                alert('Please select a file!');
+        	return;
+        	}
+
+        // Reading the first file selected. You can process other files similarly in loop.
+        var file = files[0];
+
+        // Instantiate the File Reader object. 
+        var reader = new FileReader();
+
+	// onLoad event is fired when the load completes.
+	reader.onload = function(event) {
+	
+	var cookietextimport = event.target.result;
+        var sub = cookietextimport.indexOf("^");
+        var tempstr = '';
+        var cnt = 0;
+        
+        if (sub == -1) {
+                alert("No index found");
+                return;}
+        
+        for (cnt = 1; sub != -1; cnt++) {
+                tempstr = cookietextimport.substring(0,  cookietextimport.indexOf("^"));        
+                Set_Cookie( "btnset" + cnt, tempstr);
+                cookietextimport = cookietextimport.substring(sub + 1, cookietextimport.length);
+                sub = cookietextimport.indexOf("^");
+                
+                Set_Cookie( "btnset_cnt", cnt);
+                }
+	};
+
+    	/* The readAsText method will read the file's data as a text string. By default the string is decoded as 'UTF-8'. */
+    	reader.readAsText(file);
+	}	
+
+ 		else {
+                	alert('The File APIs are not fully supported in this browser.');
+			}   
+}
+
+
+function searchAirport(){
+	var elmt = $("#searchcode").val();
+	
+	var options = $("#airport").find("option");
+    var matches = $.grep(options,
+        function(n) {
+    		var item = $(n).attr('value');
+    		return item.substring(0, item.indexOf('|')) == elmt.toUpperCase(); 
+    	});
+
+	$("#airport").val($(matches).attr('value'));
+	$("#airport").change();
+}
+
+function getTerminal(terminals){
+	var trmlist = new Array();
+	terminals = terminals.substring(terminals.indexOf('|') + 1, terminals.length);
+	for(var sub = 0, i = 0 ;terminals.length; i++){
+		sub = terminals.indexOf(',');
+		if(sub != -1){
+			trmlist[i] = terminals.substring(0, sub);
+			terminals = terminals.substring(sub+1, terminals.length);
+		}
+		else{
+			trmlist[i] = terminals;
+			terminals = '';
+		}
+	}
+	return trmlist; 
+}
+
+function resetSettings() {
+	
+	if(!confirm("All dashboard buttons will be removed. Do you want to continue?"))
+		return;
+	var btnset_cnt = Get_Cookie("btnset_cnt");
+
+	if(!btnset_cnt){
+		btnset_cnt = 10; // just to make sure it deletes all
+	}
+	
+	for(var i = 0; i < btnset_cnt; i++){
+		Delete_Cookie("btnset" + i);
+	}
+	Delete_Cookie("btnset_cnt");
+	
+	showMessage("Reset all Dashboard settings successfully.", "", "success_msg");
+}
+
+
+function getSelectedAirport(){
+
+        var tilebtn = new tile_btn()
+
+        try{
+                var airportcode = getSelectedVal("airport");
+                var airporttext = getSelectedTxt("airport");
+                var localtime = findSelection("time");
+                var flight = getSelectedVal("flight");
+                var displaymode = getSelectedVal("displaymode");
+                var btncolor = findSelection("btncolor");
+                var terminal = new Array();
+                var ar_trm = getTerminal($('option:selected', $('#airport')).attr('value'));
+
+                for(var i = 0, j = 0; i < ar_trm.length; i++){
+                         var elmt = document.getElementById('trm'+ i);
+                         if (elmt.checked==true) {
+                                 terminal[j] = ar_trm[i];
+                                 j++;
+                }
+                }
+
+                airportcode = airportcode.substring(0, airportcode.indexOf('|'));
+        //      var strbtn = "1"+ "," + airportcode + "," + airporttext + "," + terminal + "," + localtime + "," +
+        //      flight + "," + displaymode + "," + btncolor + "\r\n";
+
+                tilebtn.setTile_btn(1, airportcode, airporttext,
+                                terminal, localtime, flight, displaymode, btncolor);
+	}
+        catch(err){
+                showMessage("Unable to add Dashboard Button!", "", "notice");
+        }
+
+	return tilebtn;
+}
+
+function viewFlights() {
+		
+	var currentbtn = getSelectedAirport();
+
+        if(currentbtn.txt.length > 0) {
+		location.href = openlink(currentbtn);
+		//location.href = '../ETMclient.html?gzFile=lhrt1dz.xml.gz';
+        }
+        else {
+                showMessage("Unable to find flights! Please verify your selections.", "", "notice");
+        }
+
+}
+
+function addAirport() {
+	//save this button to cookie
+	try{
+		var home = new Dashboard();
+		var currentbtn = getSelectedAirport();
+		
+		if(currentbtn.txt.length > 0) {
+			home.addButton(currentbtn);
+			showMessage("Dashboard Button is added successfully.", "", "success_msg");
+		}
+		else {
+			showMessage("Unable to add Dashboard Button! Please verify your selections.", "", "notice");
+		}
+
+	}
+	catch(err){
+		showMessage("Unable to add Dashboard Button!", "", "notice");
+	}
+}
+</script>
+
+
+</html>

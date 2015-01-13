@@ -1,0 +1,819 @@
+.titleheader {
+  color: #000;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+.even {
+        background: rgb(0, 0, 0)
+}
+
+.odd {
+        background: #1E1E1E
+}
+
+.black {
+        color: rgb(0, 0, 0)
+}
+
+.blue {
+        color: rgb(117, 186, 255)
+}
+
+.cyan {
+        color: rgb(224, 255, 255)
+}
+
+.darkgrey {
+        color: rgb(30, 30, 30)
+}
+
+.medgrey {
+        color: rgb(212, 212, 212)
+}
+
+.lightgrey {
+        color: rgb(237, 237, 237)
+}
+
+.grey {
+        color: rgb(128, 128, 128)
+}
+
+.green {
+        color: rgb(0, 255, 0)
+}
+
+.default {
+        color: rgb(0, 255, 0)
+}
+
+.magenta {
+        color: rgb(255, 0, 255)
+}
+
+.orange {
+        color: rgb(255, 250, 240)
+}
+
+.pink {
+        color: rgb(255, 240, 245)
+}
+
+.red {
+        color: rgb(255, 0, 0)
+}
+
+
+.white {
+        color: rgb(255, 255, 255)
+}
+
+.yellow {
+        color: rgb(255, 255, 0)
+}
+
+.amber {
+        color: rgb(255, 255, 0)
+}
+
+.panel {
+  background: #0a5ac2;
+  color: #ffffff;
+  display:none;
+  position:absolute;
+  z-index:1000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 13pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+
+table.normal {
+    width: 100%;
+    border-collapse: separate;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+table.normal tr th, table.normal tr td {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+table.normal thead tr th {
+  vertical-align: bottom;
+  padding-bottom: 20px;
+  padding-top: 3px;
+  padding-left: 1px;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  color: rgb(0, 0, 0);
+  text-align: left;
+}
+
+table.normal thead tr th.right {
+  text-align: right;
+  padding-right: 5px;
+}
+
+table.normal tbody tr td {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  padding: 1px 2px;
+}
+
+.jeditable {
+  width: auto;
+  height: 10px;
+}
+
+.jeditable input{
+  font-weight: 300;
+  font-size: 15pt;
+  letter-spacing: 0.02em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+table.hovered tbody tr:hover {
+  background-color: rgb(96,96,96) ;
+}
+
+table tbody tr.row_selected {
+  background-color: rgb(96,96,96);
+}
+
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Layout.less
+ */
+.modern-ui span {
+  color: white;
+}
+.radiobox,
+.checkbox,
+.switch {
+  cursor: pointer;
+  cursor: hand;
+  position: relative;
+}
+.radiobox  > span,
+.checkbox  > span,
+.switch  > span {
+  position: relative;
+}
+.checkbox {
+  /* Checkbox border */
+
+  /* Checkbox marker */
+}
+.checkbox input[type=checkbox],
+.checkbox input[type=checkbox] + span,
+.checkbox input[type=checkbox] + span::before,
+.checkbox input[type=checkbox] + span::after {
+  vertical-align: middle;
+  display: inline-block;
+}
+.checkbox input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+.checkbox input[type=checkbox] + span {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  line-height: 19px;
+}
+.checkbox input[type=checkbox] + span::before {
+  content: "\2714";
+  text-indent: -9999px;
+  margin-right: 10px;
+  border: 2px #d9d9d9 solid;
+  background: #fff;
+  height: 21px;
+  width: 21px;
+  margin-top: -3px;
+}
+.checkbox input[type=checkbox]:checked + span::after {
+  position: absolute;
+  content: "\2713";
+  color: #1a1a1a;
+  z-index: 1;
+  font-size: 16px;
+  font-weight: bold;
+  left: 4px;
+  top: 0px;
+}
+.checkbox input[type=checkbox]:checked + span::before {
+  background: #fff;
+}
+.checkbox input[type=checkbox]:not(:checked):disabled + span::before {
+  cursor: default;
+  background: #e6e6e6;
+}
+.checkbox input[type=checkbox]:disabled + span::before {
+  cursor: default;
+  background: #ebebeb;
+}
+.checkbox input[type=checkbox]:disabled + span::after {
+  color: #8a8a8a;
+}
+.checkbox:hover input[type=checkbox]:disabled + span::before {
+  cursor: default;
+  background: #e6e6e6;
+}
+.checkbox:hover input[type=checkbox] + span::before {
+  background: #fff;
+  border: 2px #919191 solid;
+}
+.checkbox:hover input[type=checkbox]:disabled + span::before {
+  border: 2px #d9d9d9 solid;
+}
+.checkbox:active input[type=checkbox]:checked:not(:disabled) + span::after {
+  color: #fff;
+}
+.checkbox.intermediate {
+  /* Checkbox marker */
+
+}
+.checkbox.intermediate input[type=checkbox] + span::after {
+  position: absolute;
+  content: "";
+  color: #1a1a1a;
+  z-index: 1;
+  font-size: 16px;
+  font-weight: bold;
+  left: 5px;
+  top: 5px;
+  background-color: #1a1a1a;
+  width: 10px;
+  height: 10px;
+}
+.radiobox {
+  /* Radio border*/
+
+  /* Radio Marker*/
+
+}
+.radiobox input[type=radio],
+.radiobox input[type=radio] + span,
+.radiobox input[type=radio] + span::before,
+.radiobox input[type=radio] + span::after {
+  vertical-align: middle;
+  display: inline-block;
+}
+.radiobox input[type=radio] {
+  position: absolute;
+  display: none;
+}
+.radiobox input[type=radio] + span {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+.radiobox:hover input[type=radio] + span::before {
+  background: #fff;
+  border: 2px #919191 solid;
+}
+.radiobox:hover input[type=radio]:disabled + span::before {
+  border: 2px #d9d9d9 solid;
+}
+.radiobox:active input[type=radio]:checked:not(:disabled) + span::after {
+  color: #fff;
+}
+.radiobox input[type=radio] + span::before {
+  content: "\2022";
+  text-indent: -9999px;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px #cfcfcf solid;
+  background: #fff;
+  margin-top: -3px;
+}
+.radiobox input[type=radio]:checked + span::after {
+  text-indent: -9999px;
+  position: absolute;
+  content: "\2022";
+  background: #212121;
+  z-index: 1000;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  left: 6px;
+  top: 5px;
+}
+.radiobox input[type=radio]:checked + span::before {
+  background: #fff;
+}
+.radiobox input[type=radio]:not(:checked):disabled + span::before {
+  cursor: default;
+  background: #e6e6e6;
+}
+.radiobox input[type=radio]:disabled + span::before {
+  cursor: default;
+  background: #ebebeb;
+}
+.radiobox input[type=radio]:disabled + span::after {
+  color: #8a8a8a;
+  background-color: #8a8a8a;
+}
+.radiobox:hover input[type=radio]:disabled + span::before {
+  cursor: default;
+  background: #e6e6e6;
+}
+.switch input[type=checkbox],
+.switch input[type=checkbox] + span,
+.switch input[type=checkbox] + span::before,
+.switch input[type=checkbox] + span::after {
+  vertical-align: middle;
+  display: inline-block;
+}
+.switch input[type=checkbox] {
+  position: absolute;
+  display: none;
+}
+.switch input[type=checkbox] + span {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+.switch input[type=checkbox] + span::before {
+  content: "";
+  width: 43px;
+  height: 16px;
+  outline: 2px #a6a6a6 solid;
+  border: 1px #fff solid;
+  cursor: pointer;
+  background: #6c6c6c;
+  margin-left: 2px;
+  position: relative;
+  margin-right: 10px;
+  z-index: 100;
+}
+.switch input[type=checkbox] + span::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 34px;
+  width: 13px;
+  height: 20px;
+  background: #333;
+  z-index: 1000;
+}
+.switch input[type=checkbox]:checked + span::before {
+  background: #2d89ef;
+}
+.switch input[type=checkbox]:not(:checked) + span::after {
+  top: 2px;
+  left: 0px;
+}
+.switch input[type=checkbox]:not(:checked) + span::before {
+  background: #a6a6a6;
+}
+.switch input[type=checkbox]:disabled + span::before {
+  cursor: default;
+  background: #e0e0e0;
+  outline: 2px #ccc solid;
+}
+.switch input[type=checkbox]:disabled + span::after {
+  background: #a6a6a6;
+}
+.switch:hover input[type=checkbox]:not(:checked) + span::before {
+  background: #a6a6a6;
+}
+.switch:hover input[type=checkbox] + span::before {
+  background: #2d89ef;
+}
+.switch:hover input[type=checkbox]:disabled + span::before {
+  cursor: default;
+  background: #e0e0e0;
+}
+
+@media (min-width: 481px) {
+    #resetall { 
+	float:right;
+    }
+    .bottom_info {
+        height: 60px;
+    }
+
+    .dataTables_length {
+	padding-left: 30px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    /* Force table to not be like tables anymore */
+    .cansrink table, .cansrink thead, .cansrink tbody, .cansrink th, .cansrink td, .cansrink tr {
+        display: block;
+    }
+
+    #resetall {
+	float:left;
+    }
+   
+    .dataTables_length {
+	padding-left: 10px;
+    }
+
+    .dataTables_info {
+	width: 100%;
+    }
+
+    .bottom_info {
+	height: 100px;
+        display: block;
+    }
+
+}
+
+.winbtn {
+  color: #ffffff;
+  background: #2d89ef;
+  border: 1px solid #ffffff;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  border-radius: 0px;
+}
+
+.winbtn:hover {
+  background: #2d9aff;
+  border: 1px solid #2d89ef;
+  font-weight: 500;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables 
+ */
+
+table.dataTable thead th {
+	cursor: pointer;
+	*cursor: hand;
+}
+
+.sorting_asc {
+	background: url('../images/sort_asc.png') no-repeat bottom;
+}
+
+.sorting_desc {
+	background: url('../images/sort_desc.png') no-repeat bottom;
+}
+
+.sorting {
+	background: url('../images/sort_both.png') no-repeat bottom;
+}
+
+.sorting_asc_disabled {
+	background: url('../images/sort_asc_disabled.png') no-repeat bottom;
+}
+
+.sorting_desc_disabled {
+	background: url('../images/sort_desc_disabled.png') no-repeat bottom;
+}
+ 
+table.display thead th:active,
+table.display thead td:active {
+	outline: none;
+}
+
+/*
+ * Table wrapper
+ */
+.dataTables_wrapper {
+	position: relative;
+	clear: both;
+	*zoom: 1;
+}
+.dataTables_wrapper .ui-widget-header {
+	font-weight: normal;
+}
+.dataTables_wrapper .ui-toolbar {
+	padding: 5px;
+}
+
+.bottom_info {
+  color: #ffffff !important;
+  background-color:#2c2c2c; 
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  border-radius: 0px;
+  width: 100%;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 5px 0px 20px 0;
+}
+
+
+/*
+ * Page length menu
+ */
+
+.dataTables_length {
+	float: left;
+	width: 30%;
+	padding-top: 15px;
+}
+
+.dataTables_length label {
+	font-size: 11pt;
+	color: #ffffff !important;
+	width: 300px;
+        height: 40px;
+}
+
+.dataTables_length select {
+	width: 80px;
+}
+
+/*
+ * Filter
+ */
+.dataTables_filter {
+	float: right;
+	text-align: left;
+        font-size: 11pt;
+}
+
+.dataTables_filter label {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+
+
+/*
+ * Table information
+ */
+.dataTables_info {
+	float: left;
+	clear: both;
+        padding-top: 17px;
+        padding-left: 10px;
+}
+
+
+/*
+ * Pagination
+ */
+.dataTables_paginate {
+        padding-top: 5px;
+        padding-right: 10px;
+	float: right;
+	color: #ffffff !important;
+	text-align: right;
+}
+
+.dataTables_paginate .ui-button {
+	margin-right: -0.1em !important;
+}
+
+.paging_two_button .ui-button {
+	float: left;
+	cursor: pointer;
+	* cursor: hand;
+}
+
+.paging_full_numbers .ui-button {
+	padding: 2px 6px;
+	margin: 0;
+	cursor: pointer;
+	* cursor: hand;
+	color: #333 !important;
+}
+
+/* Two button pagination - previous / next */
+.paginate_disabled_previous,
+.paginate_enabled_previous,
+.paginate_disabled_next,
+.paginate_enabled_next {
+	height: 48px;
+	float: left;
+	cursor: pointer;
+	*cursor: hand;
+}
+.paginate_disabled_previous:hover,
+.paginate_enabled_previous:hover,
+.paginate_disabled_next:hover,
+.paginate_enabled_next:hover {
+	text-decoration: none !important;
+}
+.paginate_disabled_previous:active,
+.paginate_enabled_previous:active,
+.paginate_disabled_next:active,
+.paginate_enabled_next:active {
+	outline: none;
+}
+
+.paginate_disabled_previous,
+.paginate_disabled_next {
+	color: #666 !important;
+}
+.paginate_disabled_previous,
+.paginate_enabled_previous {
+	padding-left: 48px;
+}
+.paginate_disabled_next,
+.paginate_enabled_next {
+	padding-right: 48px;
+	margin-left: 10px;
+}
+
+.paginate_enabled_previous { background: url('../images/left.png') no-repeat top left; }
+.paginate_enabled_previous:hover { background: url('../images/left.png') no-repeat top left; }
+.paginate_disabled_previous { background: url('../images/black_left.png') no-repeat top left; }
+
+.paginate_enabled_next { background: url('../images/right.png') no-repeat top right; }
+.paginate_enabled_next:hover { background: url('../images/right.png') no-repeat top right; }
+.paginate_disabled_next { background: url('../images/black_right.png') no-repeat top right; }
+
+/*
+ * Processing indicator
+ */
+.dataTables_processing {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 250px;
+	height: 30px;
+	margin-left: -125px;
+	margin-top: -15px;
+	padding: 14px 0 2px 0;
+	border: 1px solid #ddd;
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+	background-color: white;
+}
+
+/*
+ * Scrolling
+ */
+.dataTables_scroll {
+	clear: both;
+}
+
+.dataTables_scrollBody {
+	*margin-top: -1px;
+	-webkit-overflow-scrolling: touch;
+}
+
+.del_column {
+        background: url('../images/remove.png') no-repeat bottom;
+}
+
+/*
+ * Namespace DTCR - "DataTables ColReorder" plug-in
+ */
+
+table.DTCR_clonedTable {
+	background-color: white;
+	z-index: 202;
+}
+
+div.DTCR_pointer {
+	width: 1px;
+	background-color: #2d89ef;/*#0259C4;*/
+	z-index: 201;
+}
+
+body.alt div.DTCR_pointer {
+	margin-top: -15px;
+	margin-left: -9px;
+	width: 18px;
+	background: url('../images/insert.png') no-repeat top left;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * ColVis styles
+  color: #ffffff !important;
+  background-color:#2c2c2c;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  border-radius: 0px;
+  width: 100%;
+  height: 60px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 5px 0px 20px 0;
+  color: #ffffff;
+  background: #2d89ef;
+  border: 1px solid #ffffff;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  border-radius: 0px;
+
+ */
+.ColVis {
+	float: left;
+	padding-top: 10px;
+	margin-bottom: 1em;
+}
+
+.ColVis_Button {
+	position: relative;
+	float: left;
+	margin-right: 3px;
+	padding: 3px 5px;
+	height: 35px;
+	background-color: #fff;
+	border: 1px solid #d0d0d0;
+	cursor: pointer;
+	*cursor: hand;
+  
+  background: #0a5ac2;
+  color: #ffffff !important;  
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  border: 1px solid #2d89ef;
+  border-radius: 3px;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+div.ColVis_collectionBackground {
+	background-color: black;
+	z-index: 1100;
+}
+
+div.ColVis_collection{
+	position: relative;
+	width: 150px;
+	background-color: #f3f3f3;
+	padding: 3px;
+	border: 1px solid #ccc;
+	z-index: 1102;
+
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+}
+
+div.ColVis_collection button.ColVis_Button {
+	/*background-color: white;*/
+	width: auto;
+	float: none;
+	margin-bottom: 2px;
+}
+
+div.ColVis_catcher {
+	position: absolute;
+	z-index: 1101;
+}
+.disabled {
+	color: #999;
+}
+
+button.ColVis_Button {
+	text-align: left;
+}
+
+div.ColVis_collection button.ColVis_Button:hover {
+/*	border: 1px solid #999;
+	background-color: #f0f0f0;
+*/
+}
+
+span.ColVis_radio {
+	display: inline-block;
+	width: 20px;
+}
+

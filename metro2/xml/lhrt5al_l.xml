@@ -1,0 +1,210 @@
+<?xml-stylesheet type="text/xsl" href="etm.xsl"?>
+<PageDisplayFormat>
+  <MessageHeader>
+    <MessageCreationDateTime>2014-10-31T20:36:41</MessageCreationDateTime>
+    <Locale TimeType="Local" Variance="0"  >LHR</Locale>
+    <PageColourDefinition>
+      <Colour Name="black" R="0" G="0" B="0" />
+      <Colour Name="blue" R="117" G="186" B="255" />
+      <Colour Name="cyan" R="224" G="255" B="255" />
+      <Colour Name="darkgrey" R="30" G="30" B="30" />
+      <Colour Name="medgrey" R="212" G="212" B="212" />
+      <Colour Name="lightgrey" R="237" G="237" B="237" />
+      <Colour Name="grey" R="128" G="128" B="128" />
+      <Colour Name="green" R="0" G="255" B="0" />
+      <Colour Name="default" R="0" G="255" B="0" />
+      <Colour Name="magenta" R="255" G="0" B="255" />
+      <Colour Name="orange" R="255" G="250" B="240" />
+      <Colour Name="pink" R="255" G="240" B="245" />
+      <Colour Name="red" R="255" G="0" B="0" />
+      <Colour Name="white" R="255" G="255" B="255" />
+      <Colour Name="yellow" R="255" G="255" B="0" />
+      <Colour Name="amber" R="255" G="255" B="0" />
+    </PageColourDefinition>
+    <PageFontSize>15</PageFontSize>
+    <FitToPage>false</FitToPage>
+    <AlarmTrigger>3840</AlarmTrigger>
+    <RefreshInterval>3</RefreshInterval>
+  </MessageHeader>
+  <TitleBlock Background="lightgrey" >
+    <Row>
+      <RowData Colour="black" Name="Header1">LHR Terminal 5 - L/H Arrivals LocalTime                </RowData>
+    </Row>
+    <Row>
+      <RowData Colour="black" Name="Header2">                                                          Cch                        Bkd Pax Spcl</RowData>
+    </Row>
+    <Row>
+      <RowData Colour="black" Name="FlightNumber">Flt No</RowData>
+      <RowData Colour="black" Name="ETM_DepartureAirportCode">  Org</RowData>
+      <RowData Colour="black" Name="ScheduledArrivalDateTime">     STA</RowData>
+      <RowData Colour="black" Name="EstimatedArrivalDateTime">  ETA</RowData>
+      <RowData Colour="black" Name="EstimatedArrivalDateTimeContext">  </RowData>
+      <RowData Colour="black" Name="ArrivalLinkFlightNumber">  lFlt</RowData>
+      <RowData Colour="black" Name="ArrivalLinkFlightEstimatedDepartureDateTime"> lETD</RowData>
+      <RowData Colour="black" Name="Cancelled"> Cx</RowData>
+      <RowData Colour="black" Name="ETM_EstimatedArrivalDateTimeContext"> Ar</RowData>
+      <RowData Colour="black" Name="TouchdownDateTime"> LND</RowData>
+      <RowData Colour="black" Name="ETM_ArrivalDelayMinutes"> Dlay</RowData>
+      <RowData Colour="black" Name="ArrivalAircraftStand"> Stnd</RowData>
+      <RowData Colour="black" Name="ETM_ArrivalPassengerCoachingStatus"> Px</RowData>
+      <RowData Colour="black" Name="AbbreviatedAircraftRegistration"> Reg</RowData>
+      <RowData Colour="black" Name="AircraftTypeCode"> Typ</RowData>
+      <RowData Colour="black" Name="ETM_GroundStabilityWarning"> Stab</RowData>
+      <RowData Colour="black" Name="LoadMessageStatus">  LDM</RowData>
+      <RowData Colour="black" Name="ContainerPalletMessageStatus">  CPM</RowData>
+      <RowData Colour="black" Name="PassengersBookedDirect">  Pax</RowData>
+      <RowData Colour="black" Name="PassengersArrivalTransfer"> Xfr</RowData>
+      <RowData Colour="black" Name="ETM_SpecialNeedChecked"> Need</RowData>
+      <RowData Colour="black" Name="InBlockFuel">  Fuel</RowData>
+    </Row>
+  </TitleBlock>
+  <ClientTitleBlock Background="lightgrey" >
+    <Row>
+      <RowData Colour="black" Justify="left" Name="ETM_CarrierCode"></RowData>
+      <RowData Colour="black" Justify="right" Name="FlightNumber">Flt&lt;br /&gt;No</RowData>
+      <RowData Colour="black" Justify="left" Name="OperationalSuffix"></RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_DepartureAirportCode">Org</RowData>
+      <RowData Colour="black" Justify="right" Name="AbbreviatedAircraftRegistration">Reg</RowData>
+      <RowData Colour="black" Justify="right" Name="AircraftTypeCode">Typ</RowData>
+      <RowData Colour="black" Justify="left" Name="ArrivalAircraftStand">Stnd</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_ArrivalPassengerCoachingStatus">Cch&lt;br /&gt;Px</RowData>
+      <RowData Colour="black" Justify="left" Name="ScheduledArrivalDateTime">STA</RowData>
+      <RowData Colour="black" Justify="left" Name="EstimatedArrivalDateTime">ETA</RowData>
+      <RowData Colour="black" Justify="right" Name="EstimatedArrivalDateTimeContext"></RowData>
+      <RowData Colour="black" Justify="left" Name="TouchdownDateTime">LND</RowData>
+      <RowData Colour="black" Justify="left" Name="PassengerDoorsOpenDateTime">Pax&lt;br /&gt;Door</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_ArrivalDelayMinutes">Dlay</RowData>
+      <RowData Colour="black" Justify="right" Name="Cancelled">Cx</RowData>
+      <RowData Colour="black" Justify="right" Name="ETM_GroundStabilityWarning">Stab</RowData>
+      <RowData Colour="black" Justify="right" Name="LoadMessageStatus">LDM</RowData>
+      <RowData Colour="black" Justify="right" Name="ContainerPalletMessageStatus">CPM</RowData>
+      <RowData Colour="black" Justify="right" Name="PassengersBookedDirect">Book&lt;br /&gt;Load&lt;br /&gt;Tot</RowData>
+      <RowData Colour="black" Justify="right" Name="PassengersArrivalTransfer">Pax&lt;br /&gt;Load&lt;br /&gt;Xfr</RowData>
+      <RowData Colour="black" Justify="left" Name="ETM_SpecialNeedChecked">PRM&lt;br /&gt;Chk</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_WheelchairChecked">Wch&lt;br /&gt;Typ&lt;br /&gt;Chk</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_SpecialAsstChecked">Spcl&lt;br /&gt;Asst&lt;br /&gt;Chk</RowData>
+      <RowData Colour="black" Justify="center" Name="ETM_UnescortedMinors_Concat">UMS&lt;br /&gt;Bkd/Chk</RowData>
+      <RowData Colour="black" Justify="right" Name="ArrivalLinkFlightNumber">lFlt</RowData>
+      <RowData Colour="black" Justify="left" Name="ArrivalLinkFlightEstimatedDepartureDateTime">lETD</RowData>
+      <RowData Colour="black" Justify="right" Name="InBlockFuel">In&lt;br /&gt;Block&lt;br /&gt;Fuel</RowData>
+    </Row>
+  </ClientTitleBlock>
+  <DataBlock Background="black" AltBackground="darkgrey">
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>042 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>CPT</DepartureAirportCode>
+        <FlightOriginDate>2014-10-30</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>LHR</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber">  42</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="ETM_DepartureAirportCode">CPT     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration">  IVB</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 744</RowData>
+      <RowData Colour="default" Name="ArrivalAircraftStand"> 546</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalPassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ScheduledArrivalDateTime">0520</RowData>
+      <RowData Colour="red" Name="EstimatedArrivalDateTime">0838</RowData>
+      <RowData Colour="default" Name="EstimatedArrivalDateTimeContext">P </RowData>
+      <RowData Colour="default" Name="TouchdownDateTime">    </RowData>
+      <RowData Colour="default" Name="PassengerDoorsOpenDateTime">    </RowData>
+      <RowData Colour="red" Name="ETM_ArrivalDelayMinutes"> 1638</RowData>
+      <RowData Colour="default" Name="Cancelled">  </RowData>
+      <RowData Colour="default" Name="ETM_GroundStabilityWarning">   </RowData>
+      <RowData Colour="default" Name="LoadMessageStatus">      </RowData>
+      <RowData Colour="default" Name="ContainerPalletMessageStatus">     </RowData>
+      <RowData Colour="default" Name="PassengersBookedDirect">   285</RowData>
+      <RowData Colour="default" Name="PassengersArrivalTransfer"> 201</RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">3R         </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ArrivalLinkFlightNumber">  59</RowData>
+      <RowData Colour="default" Name="ArrivalLinkFlightEstimatedDepartureDateTime">    </RowData>
+      <RowData Colour="default" Name="InBlockFuel">      </RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>164 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>TLV</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>LHR</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 164</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="ETM_DepartureAirportCode">TLV     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration">  EDM</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 321</RowData>
+      <RowData Colour="default" Name="ArrivalAircraftStand"> 517</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalPassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ScheduledArrivalDateTime">2010</RowData>
+      <RowData Colour="default" Name="EstimatedArrivalDateTime">2014</RowData>
+      <RowData Colour="default" Name="EstimatedArrivalDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="TouchdownDateTime">2008</RowData>
+      <RowData Colour="default" Name="PassengerDoorsOpenDateTime">2016</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalDelayMinutes">    4</RowData>
+      <RowData Colour="default" Name="Cancelled">  </RowData>
+      <RowData Colour="default" Name="ETM_GroundStabilityWarning">  ?</RowData>
+      <RowData Colour="default" Name="LoadMessageStatus">      </RowData>
+      <RowData Colour="default" Name="ContainerPalletMessageStatus">     </RowData>
+      <RowData Colour="amber" Name="PassengersBookedDirect">   147</RowData>
+      <RowData Colour="default" Name="PassengersArrivalTransfer">  11</RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">1R/1S      </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ArrivalLinkFlightNumber"> 237</RowData>
+      <RowData Colour="default" Name="ArrivalLinkFlightEstimatedDepartureDateTime">2135</RowData>
+      <RowData Colour="default" Name="InBlockFuel">  3000</RowData>
+    </Row>
+    <Row>
+      <KeyData>
+        <CarrierCode>BA </CarrierCode>
+        <FlightNumber>178 </FlightNumber>
+        <OperationalSuffix> </OperationalSuffix>
+        <DepartureAirportCode>JFK</DepartureAirportCode>
+        <FlightOriginDate>2014-10-31</FlightOriginDate>
+        <ReturnFromAirborneNumber>-</ReturnFromAirborneNumber>
+        <ArrivalAirportCode>LHR</ArrivalAirportCode>
+      </KeyData>
+      <RowData Colour="default" Name="ETM_CarrierCode">  </RowData>
+      <RowData Colour="default" Name="FlightNumber"> 178</RowData>
+      <RowData Colour="default" Name="OperationalSuffix">  </RowData>
+      <RowData Colour="default" Name="ETM_DepartureAirportCode">JFK     </RowData>
+      <RowData Colour="default" Name="AbbreviatedAircraftRegistration">  IVY</RowData>
+      <RowData Colour="default" Name="AircraftTypeCode"> 744</RowData>
+      <RowData Colour="default" Name="ArrivalAircraftStand"> 562</RowData>
+      <RowData Colour="default" Name="ETM_ArrivalPassengerCoachingStatus">  </RowData>
+      <RowData Colour="default" Name="ScheduledArrivalDateTime">2015</RowData>
+      <RowData Colour="default" Name="EstimatedArrivalDateTime">1954</RowData>
+      <RowData Colour="default" Name="EstimatedArrivalDateTimeContext">Y </RowData>
+      <RowData Colour="default" Name="TouchdownDateTime">1950</RowData>
+      <RowData Colour="default" Name="PassengerDoorsOpenDateTime">    </RowData>
+      <RowData Colour="default" Name="ETM_ArrivalDelayMinutes">  -21</RowData>
+      <RowData Colour="default" Name="Cancelled">  </RowData>
+      <RowData Colour="default" Name="ETM_GroundStabilityWarning">  ?</RowData>
+      <RowData Colour="default" Name="LoadMessageStatus">      </RowData>
+      <RowData Colour="default" Name="ContainerPalletMessageStatus">     </RowData>
+      <RowData Colour="red" Name="PassengersBookedDirect">   292</RowData>
+      <RowData Colour="default" Name="PassengersArrivalTransfer">  30</RowData>
+      <RowData Colour="default" Name="ETM_SpecialNeedChecked">1R         </RowData>
+      <RowData Colour="default" Name="ETM_WheelchairChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_SpecialAsstChecked">           </RowData>
+      <RowData Colour="default" Name="ETM_UnescortedMinors_Concat">       </RowData>
+      <RowData Colour="default" Name="ArrivalLinkFlightNumber"> 117</RowData>
+      <RowData Colour="default" Name="ArrivalLinkFlightEstimatedDepartureDateTime">0820</RowData>
+      <RowData Colour="default" Name="InBlockFuel"> 11300</RowData>
+    </Row>
+  </DataBlock>
+  <FooterBlock Background="white">
+  </FooterBlock>
+</PageDisplayFormat>
