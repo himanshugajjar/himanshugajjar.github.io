@@ -5,13 +5,28 @@
 <script>
 $( document ).ready(function() {
 	var params = getUrlParams();
-	alert(JSON.stringify(params));
+	//alert(JSON.stringify(params));
 	
 	if(params["code"]) {
 		// redirected from linkedin get the code and call auth url
+		/*
+		https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code
+                                           &code=AUTHORIZATION_CODE
+                                           &redirect_uri=YOUR_REDIRECT_URI
+                                           &client_id=YOUR_API_KEY
+                                           &client_secret=YOUR_SECRET_KEY		
+		*/
+		var posturl = 'https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code';
+		posturl += '&client_id=' + '774kxp0s1abfkj';
+		posturl += '&scope=' + 'r_fullprofile';
+		posturl += '&code=' + params["code"];
+		posturl += '&client_secret=' + 'URKD3Kyadodn0H4n';
+		posturl += '&redirect_uri=' + 'http://himanshugajjar.github.io/kfdemo/store.html';
+		window.open(posturl);
 	}
 	else if (params["error"]){
 		// display error
+		alert(JSON.stringify(params));
 	}
 	else if(JSON.stringify(params) == "{}") {
 		// generate auth code
@@ -24,10 +39,10 @@ $( document ).ready(function() {
 		*/
 		
 		var posturl = 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code';
-		posturl += '&client_id=' + '774kxp0s1abfk'
-		posturl += '&scope=' + 'r_fullprofile'
-		posturl += '&state=' + 'STATE' + new Date().getTime();
-		posturl += '&redirect_uri=' + 'http://himanshugajjar.github.io/kfdemo/store.html'
+		posturl += '&client_id=' + '774kxp0s1abfkj';
+		posturl += '&scope=' + 'r_fullprofile';
+		posturl += '&state=' + 'STATE' + new Date().getTime();;
+		posturl += '&redirect_uri=' + 'http://himanshugajjar.github.io/kfdemo/store.html';
 		window.open(posturl);
 	}
 	
