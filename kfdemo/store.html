@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src="jquery-2.1.3.min.js"></script>
+<script src="utility.js"></script>
+<script>
+$( document ).ready(function() {
+	var params = getUrlParams();
+	alert(JSON.stringify(params));
+	
+	if(params["code"]) {
+		// redirected from linkedin get the code and call auth url
+	}
+	else if (params["error"]){
+		// display error
+	}
+	else if(JSON.stringify(params) == "{}") {
+		// generate auth code
+		// build url
+		/*https://www.linkedin.com/uas/oauth2/authorization?response_type=code
+                                           &client_id=YOUR_API_KEY
+                                           &scope=SCOPE
+                                           &state=STATE
+                                           &redirect_uri=YOUR_REDIRECT_URI
+		*/
+		
+		var posturl = 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code';
+		posturl += '&client_id=' + '774kxp0s1abfk'
+		posturl += '&scope=' + 'r_fullprofile'
+		posturl += '&state=' + 'STATE' + new Date().getTime();
+		posturl += '&redirect_uri=' + 'http://himanshugajjar.github.io/kfdemo/store.html'
+		window.open(posturl);
+	}
+	
+});
+</script>
+</head>
+<body>
+</body>
+</html>
